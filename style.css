@@ -1,0 +1,46 @@
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  font-family: Roboto, Arial, sans-serif;
+
+  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* My stuff */
+#infobox {
+  display: block;
+  background: #FFF;
+  color: #000;
+
+  padding: 15px;
+
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+
+  position: fixed;
+  bottom: 24px;
+  right: 50px;
+  z-index: 10000;
+
+  visibility: hidden;
+}
+#infobox h2 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+#infobox p {
+  margin: 0;
+  font-size: 12px;
+}
+#infobox p ul {
+  margin: 0;
+  padding-left: 15px;
+}
