@@ -43,7 +43,7 @@ airports.pek = { name: "Beijing", coords: {lat: 40.0799, lng: 116.6031} };
 airports.rmf = { name: "Marsa Alam", coords: {lat: 25.5588, lng: 34.5882} };
 airports.lpa = { name: "Gran Canaria Las Palmas", coords: {lat: 27.9332, lng: -15.3877} };
 
-var map, icon_filled, icon_unfilled, flights = [];
+var map, icon_filled, icon_filled_05, icon_filled_01, flights = [], airport_markers = {};
 
 function newflight(path) {
   var geodesicPoly = new google.maps.Polyline({
@@ -63,21 +63,29 @@ function newairport(location, id) {
     position: location,
     map: map,
     id: id,
-    icon: icon_unfilled
+    icon: icon_filled_05
   });
 
+  airport_markers[marker.id] = marker;
+
   google.maps.event.addListener(marker, 'mouseover', function (event) {
+    for (var id in airport_markers) {
+      airport_markers[id].setIcon(icon_filled_01);
+    }
+
     this.setIcon(icon_filled);
     var this_airport_name = airports[this.id].name;
     var connects = [];
 
     for (var i=0; i < flights.length; i++) {
       if (this.id == flights[i].path[0]) {
+        airport_markers[flights[i].path[1]].setIcon(icon_filled);
         connects.push(airports[flights[i].path[1]].name);
         flights[i].polygon.setOptions({
                 strokeOpacity : 1.0
             });
       } else if (this.id == flights[i].path[1]) {
+        airport_markers[flights[i].path[0]].setIcon(icon_filled);
         connects.push(airports[flights[i].path[0]].name);
         flights[i].polygon.setOptions({
                 strokeOpacity : 1.0
@@ -109,12 +117,16 @@ function newairport(location, id) {
   });
 
   google.maps.event.addListener(marker, 'mouseout', function (event) {
-    this.setIcon(icon_unfilled);
+    for (var id in airport_markers) {
+      airport_markers[id].setIcon(icon_filled_05);
+    }
+
     for (var i=0; i < flights.length; i++) {
       flights[i].polygon.setOptions({
               strokeOpacity : 1.0
           });
     }
+
     var infobox = document.getElementById("infobox");
     infobox.style.visibility = "hidden";
   });
@@ -131,13 +143,23 @@ function initMap() {
     scale: 3 //pixels
   };
 
-  icon_unfilled = {
+  icon_filled_05 = {
     path: google.maps.SymbolPath.CIRCLE,
     strokeColor: '#990033',
     strokeOpacity: 0.0,
     strokeWeight: 0,
     fillColor: '#990033',
     fillOpacity: 0.5,
+    scale: 3 //pixels
+  };
+
+  icon_filled_01 = {
+    path: google.maps.SymbolPath.CIRCLE,
+    strokeColor: '#990033',
+    strokeOpacity: 0.0,
+    strokeWeight: 0,
+    fillColor: '#990033',
+    fillOpacity: 0.1,
     scale: 3 //pixels
   };
 
