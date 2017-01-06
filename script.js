@@ -334,7 +334,8 @@ function initMap() {
                 ["arn", "dub"],
                 ["nyo", "aja"],
                 ["mia", "mad"],
-                ["mad", "arn"]
+                ["mad", "arn"],
+                ["cph", "lhr"]
               ];
   for (var i=0; i < paths.length; i++) {
     newflight(paths[i]);
