@@ -4,7 +4,8 @@ var airports = {};
 airports.arn = { name: "Stockholm Arlanda", coords: {lat: 59.6498, lng: 17.9238} };
 airports.bma = { name: "Stockholm Bromma", coords: {lat: 59.3548, lng: 17.9427} };
 airports.got = { name: "Göteborg Landvetter", coords: {lat: 57.6688, lng: 12.2923} };
-airports.mmx = { name: "Malmö", coords: {lat: 55.5355, lng: 13.3724} };
+airports.lla = { name: "Luleå Kallax", coords: {lat: 65.3240, lng: 22.0741} };
+airports.mmx = { name: "Malmö Sturup", coords: {lat: 55.5355, lng: 13.3724} };
 airports.nyo = { name: "Stockholm Skavsta", coords: {lat: 58.7890, lng: 16.9154} };
 airports.ume = { name: "Umeå", coords: {lat: 63.7930, lng: 20.2893} };
 
@@ -335,7 +336,8 @@ function initMap() {
                 ["nyo", "aja"],
                 ["mia", "mad"],
                 ["mad", "arn"],
-                ["cph", "lhr"]
+                ["cph", "lhr"],
+                ["arn", "lla"]
               ];
   for (var i=0; i < paths.length; i++) {
     newflight(paths[i]);
