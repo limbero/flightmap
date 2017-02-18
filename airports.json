@@ -106,6 +106,13 @@
       "lng": -73.7781
     }
   },
+  "ewr": {
+    "name": "New York Newark",
+    "coords": {
+      "lat": 40.6895,
+      "lng": -74.1745
+    }
+  },
 
 
   "aja": {
