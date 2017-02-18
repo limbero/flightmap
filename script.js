@@ -13,7 +13,7 @@ function newflight(path, airports) {
   geodesicPoly.setPath([airports[path[0]].coords, airports[path[1]].coords]);
 }
 
-function newairport(location, id) {
+function newairport(location, id, airports) {
   var marker = new google.maps.Marker({
     position: location,
     map: map,
@@ -254,7 +254,7 @@ function initMap() {
     var bounds = new google.maps.LatLngBounds();
     for (var id in airports) {
       bounds.extend(airports[id].coords);
-      newairport(airports[id].coords, id);
+      newairport(airports[id].coords, id, airports);
     }
     map.fitBounds(bounds);
     // map.setZoom(map.getZoom()-1);
