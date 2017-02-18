@@ -1,0 +1,248 @@
+{
+  "arn": {
+    "name": "Stockholm Arlanda",
+    "coords": {
+      "lat": 59.6498,
+      "lng": 17.9238
+    }
+  },
+  "bma": {
+    "name": "Stockholm Bromma",
+    "coords": {
+      "lat": 59.3548,
+      "lng": 17.9427
+    }
+  },
+  "got": {
+    "name": "Göteborg Landvetter",
+    "coords": {
+      "lat": 57.6688,
+      "lng": 12.2923
+    }
+  },
+  "lla": {
+    "name": "Luleå Kallax",
+    "coords": {
+      "lat": 65.324,
+      "lng": 22.0741
+    }
+  },
+  "mmx": {
+    "name": "Malmö Sturup",
+    "coords": {
+      "lat": 55.5355,
+      "lng": 13.3724
+    }
+  },
+  "nyo": {
+    "name": "Stockholm Skavsta",
+    "coords": {
+      "lat": 58.789,
+      "lng": 16.9154
+    }
+  },
+  "ume": {
+    "name": "Umeå",
+    "coords": {
+      "lat": 63.793,
+      "lng": 20.2893
+    }
+  },
+
+
+  "bos": {
+    "name": "Boston Logan",
+    "coords": {
+      "lat": 42.3656,
+      "lng": -71.0096
+    }
+  },
+  "den": {
+    "name": "Denver",
+    "coords": {
+      "lat": 39.8561,
+      "lng": -104.6737
+    }
+  },
+  "iad": {
+    "name": "Washington D.C. Dulles",
+    "coords": {
+      "lat": 38.9531,
+      "lng": -77.4565
+    }
+  },
+  "sfo": {
+    "name": "San Francisco",
+    "coords": {
+      "lat": 37.7749,
+      "lng": -122.4194
+    }
+  },
+  "mia": {
+    "name": "Miami",
+    "coords": {
+      "lat": 25.7959,
+      "lng": -80.287
+    }
+  },
+  "sea": {
+    "name": "Seattle-Tacoma",
+    "coords": {
+      "lat": 47.4502,
+      "lng": -122.3088
+    }
+  },
+  "lax": {
+    "name": "Los Angeles",
+    "coords": {
+      "lat": 33.9416,
+      "lng": -118.4085
+    }
+  },
+  "jfk": {
+    "name": "New York John F. Kennedy",
+    "coords": {
+      "lat": 40.6413,
+      "lng": -73.7781
+    }
+  },
+
+
+  "aja": {
+    "name": "Corsica Ajaccio",
+    "coords": {
+      "lat": 41.9214,
+      "lng": 8.7966
+    }
+  },
+  "biq": {
+    "name": "Biarritz",
+    "coords": {
+      "lat": 43.4692,
+      "lng": -1.5303
+    }
+  },
+  "cdg": {
+    "name": "Paris Charles de Gaulle",
+    "coords": {
+      "lat": 49.0097,
+      "lng": 2.5479
+    }
+  },
+  "cph": {
+    "name": "Copenhagen Kastrup",
+    "coords": {
+      "lat": 55.618,
+      "lng": 12.6508
+    }
+  },
+  "dub": {
+    "name": "Dublin",
+    "coords": {
+      "lat": 53.4264,
+      "lng": -6.2499
+    }
+  },
+  "fco": {
+    "name": "Rome Leonardo da Vinci–Fiumicino",
+    "coords": {
+      "lat": 41.7999,
+      "lng": 12.2462
+    }
+  },
+  "hel": {
+    "name": "Helsinki",
+    "coords": {
+      "lat": 60.321,
+      "lng": 24.9529
+    }
+  },
+  "lhr": {
+    "name": "London Heathrow",
+    "coords": {
+      "lat": 51.47,
+      "lng": -0.4543
+    }
+  },
+  "lgw": {
+    "name": "London Gatwick",
+    "coords": {
+      "lat": 51.1537,
+      "lng": -0.1821
+    }
+  },
+  "mad": {
+    "name": "Madrid",
+    "coords": {
+      "lat": 40.4839,
+      "lng": -3.568
+    }
+  },
+  "ory": {
+    "name": "Paris Orly",
+    "coords": {
+      "lat": 48.7262,
+      "lng": 2.3652
+    }
+  },
+  "osl": {
+    "name": "Oslo Gardermoen",
+    "coords": {
+      "lat": 60.1976,
+      "lng": 11.1004
+    }
+  },
+  "szg": {
+    "name": "Salzburg Wolfgang Amadeus Mozart",
+    "coords": {
+      "lat": 47.7926,
+      "lng": 13.0029
+    }
+  },
+  "waw": {
+    "name": "Warsaw Chopin",
+    "coords": {
+      "lat": 52.1672,
+      "lng": 20.9679
+    }
+  },
+  "zrh": {
+    "name": "Zürich",
+    "coords": {
+      "lat": 47.4582,
+      "lng": 8.5555
+    }
+  },
+
+
+  "hkg": {
+    "name": "Hong Kong",
+    "coords": {
+      "lat": 22.308,
+      "lng": 113.9185
+    }
+  },
+  "pek": {
+    "name": "Beijing",
+    "coords": {
+      "lat": 40.0799,
+      "lng": 116.6031
+    }
+  },
+
+
+  "rmf": {
+    "name": "Marsa Alam",
+    "coords": {
+      "lat": 25.5588,
+      "lng": 34.5882
+    }
+  },
+  "lpa": {
+    "name": "Gran Canaria Las Palmas",
+    "coords": {
+      "lat": 27.9332,
+      "lng": -15.3877
+    }
+  }
+}
