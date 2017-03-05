@@ -122,6 +122,13 @@
       "lng": 8.7966
     }
   },
+  "bcn": {
+    "name": "Barcelona El Prat",
+    "coords": {
+      "lat": 41.2974,
+      "lng": 2.0833
+    }
+  },
   "biq": {
     "name": "Biarritz",
     "coords": {
