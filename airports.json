@@ -213,6 +213,13 @@
       "lng": 11.1004
     }
   },
+  "prg": {
+    "name": "Prague Václav Havel Airport",
+    "coords": {
+      "lat": 50.1005,
+      "lng": 14.2560
+    }
+  }, 
   "szg": {
     "name": "Salzburg Wolfgang Amadeus Mozart",
     "coords": {
