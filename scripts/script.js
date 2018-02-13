@@ -1,5 +1,11 @@
 let map, trips = [], place_markers = {};
-const iconSizeAtZoomLevel = [null, 3, 3, 3, 3, 5, 7, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+const iconSizeAtZoomLevel = [null, 3, 3, 3, 3, 5, 7, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9];
+let emoji = {
+  busride: '🚌',
+  trainride: '🚂',
+  drive: '🚗',
+  flight: '✈️'
+};
 
 function newPath(coords, color) {
   return geodesicPoly = new google.maps.Polyline({
@@ -66,38 +72,49 @@ function newPlace(location, id, places) {
     for (let i=0; i < trips.length; i++) {
       if (this.id == trips[i].between[0]) {
         place_markers[trips[i].between[1]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
-        connects.push(places[trips[i].between[1]].name);
+        const name = places[trips[i].between[1]].name;
+        if (!connects.hasOwnProperty(name)) {
+          connects[name] = [emoji[trips[i].type]];
+        } else {
+          connects[name].push(emoji[trips[i].type]);
+        }
         trips[i].polygon.setOptions({
-                strokeOpacity : 1.0
-            });
+          strokeOpacity : 1.0
+        });
       } else if (this.id == trips[i].between[1]) {
         place_markers[trips[i].between[0]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
-        connects.push(places[trips[i].between[0]].name);
+        const name = places[trips[i].between[0]].name;
+        if (!connects.hasOwnProperty(name)) {
+          connects[name] = [emoji[trips[i].type]];
+        } else {
+          connects[name].push(emoji[trips[i].type]);
+        }
         trips[i].polygon.setOptions({
-                strokeOpacity : 1.0
-            });
+          strokeOpacity : 1.0
+        });
       } else {
         trips[i].polygon.setOptions({
-                strokeOpacity : 0.1
-            });
+          strokeOpacity : 0.1
+        });
       }
     }
-    connects.sort();
 
     let infobox = document.getElementById("infobox");
     infobox.getElementsByTagName("h2")[0].innerHTML = this_place_name;
 
-    let ul = document.createElement("ul");
-    for (let i=0; i < connects.length; i++) {
-      let li = document.createElement("li");
-      li.innerHTML = connects[i];
-      ul.appendChild(li)
+    let div = document.createElement("div");
+    let keys = Object.keys(connects);
+    keys.sort();
+    for (let i=0; i < keys.length; i++) {
+      let p = document.createElement("p");
+      p.innerHTML = connects[keys[i]].join('') + ' ' + keys[i];
+      div.appendChild(p)
     }
     let p = infobox.getElementsByTagName("p")[0];
     while (p.hasChildNodes()) {
       p.removeChild(p.lastChild);
     }
-    p.appendChild(ul);
+    p.appendChild(div);
 
     infobox.style.visibility = "visible";
   });
@@ -109,8 +126,8 @@ function newPlace(location, id, places) {
 
     for (let i=0; i < trips.length; i++) {
       trips[i].polygon.setOptions({
-              strokeOpacity : 1.0
-          });
+        strokeOpacity : 1.0
+      });
     }
 
     let infobox = document.getElementById("infobox");
