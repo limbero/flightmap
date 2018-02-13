@@ -122,6 +122,13 @@
       "lng": 8.7966
     }
   },
+  "ams": {
+    "name": "Amsterdam Schiphol",
+    "coords": {
+      "lat": 52.3077,
+      "lng": 4.7674
+    }
+  },
   "bcn": {
     "name": "Barcelona El Prat",
     "coords": {
@@ -206,11 +213,32 @@
       "lng": 11.1004
     }
   },
+  "prg": {
+    "name": "Prague Václav Havel Airport",
+    "coords": {
+      "lat": 50.1005,
+      "lng": 14.2560
+    }
+  },
+  "sxf": {
+    "name": "Berlin Schönefeld",
+    "coords": {
+      "lat": 52.373831838,
+      "lng": 13.518997924
+    }
+  },
   "szg": {
     "name": "Salzburg Wolfgang Amadeus Mozart",
     "coords": {
       "lat": 47.7926,
       "lng": 13.0029
+    }
+  },
+  "txl": {
+    "name": "Berlin Tegel",
+    "coords": {
+      "lat": 52.55583111,
+      "lng": 13.285998856
     }
   },
   "waw": {
