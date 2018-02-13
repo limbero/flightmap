@@ -14,11 +14,6 @@
     "stylers": [{"color": "#dcd2be"}]
   },
   {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels.text.fill",
-    "stylers": [{"visibility": "off"}]
-  },
-  {
     "featureType": "landscape.natural",
     "elementType": "geometry",
     "stylers": [{"color": "#dfd2ae"}]
@@ -29,11 +24,27 @@
     "stylers": [{"color": "#b9d3c2"}]
   },
   {
-    "elementType": "labels.text.fill",
+    "featureType": "road",
+    "elementType": "labels",
     "stylers": [{"visibility": "off"}]
   },
   {
     "elementType": "labels.text.stroke",
+    "stylers": [{"visibility": "off"}]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "labels.text.fill",
+    "stylers": [{"color": "#c9b2a6"}]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [{"visibility": "off"}]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "elementType": "labels.text.fill",
     "stylers": [{"visibility": "off"}]
   },
   {
