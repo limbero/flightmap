@@ -114,13 +114,13 @@ function initMap() {
     }
   });
 
-  fetch('../data/theme.json').then(function(response) {
+  fetch('data/theme.json').then(function(response) {
     return response.json();
   }).then(function(theme) {
     map.setOptions({styles: theme});
   });
 
-  fetch('../data/airports.json')
+  fetch('data/airports.json')
   .then(function(response) {
     return response.json();
   }).then(function(airports) {
@@ -133,7 +133,7 @@ function initMap() {
     map.fitBounds(bounds);
     // map.setZoom(map.getZoom()-1);
 
-    fetch('../data/flights.json')
+    fetch('data/flights.json')
     .then(function(response) {
       return response.json();
     }).then(function(paths) {
