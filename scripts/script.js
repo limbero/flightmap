@@ -124,13 +124,13 @@ function initMap() {
     streetViewControl: false
   });
 
-  fetch('theme.json').then(function(response) {
+  fetch('/data/theme.json').then(function(response) {
     return response.json();
   }).then(function(theme) {
     map.setOptions({styles: theme});
   });
 
-  fetch('airports.json')
+  fetch('/data/airports.json')
   .then(function(response) {
     return response.json();
   })
@@ -144,7 +144,7 @@ function initMap() {
     map.fitBounds(bounds);
     // map.setZoom(map.getZoom()-1);
 
-    fetch('flights.json')
+    fetch('/data/flights.json')
     .then(function(response) {
       return response.json();
     })
