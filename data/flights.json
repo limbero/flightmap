@@ -1,182 +1,166 @@
 [
   [
-    "arn",
-    "bos"
+    "stockholm",
+    "boston"
   ],
   [
-    "arn",
-    "hel"
+    "stockholm",
+    "helsinki"
   ],
   [
-    "hel",
-    "hkg"
+    "helsinki",
+    "hongkong"
   ],
   [
-    "arn",
-    "pek"
+    "stockholm",
+    "beijing"
   ],
   [
-    "pek",
-    "hkg"
+    "beijing",
+    "hongkong"
   ],
   [
-    "sfo",
-    "cph"
+    "sanfrancisco",
+    "copenhagen"
   ],
   [
-    "cph",
-    "arn"
+    "copenhagen",
+    "stockholm"
   ],
   [
-    "bos",
-    "den"
+    "boston",
+    "denver"
   ],
   [
-    "arn",
-    "lhr"
+    "stockholm",
+    "london"
   ],
   [
-    "lhr",
-    "iad"
+    "london",
+    "dc"
   ],
   [
-    "bos",
-    "lgw"
+    "boston",
+    "london"
   ],
   [
-    "lgw",
-    "arn"
+    "boston",
+    "miami"
   ],
   [
-    "bos",
-    "mia"
+    "boston",
+    "seattle"
   ],
   [
-    "bos",
-    "sea"
+    "seattle",
+    "sanfrancisco"
   ],
   [
-    "sea",
-    "sfo"
+    "la",
+    "boston"
   ],
   [
-    "lax",
-    "bos"
+    "stockholm",
+    "nyc"
   ],
   [
-    "arn",
-    "jfk"
+    "stockholm",
+    "biarritz"
   ],
   [
-    "nyo",
-    "biq"
+    "stockholm",
+    "zurich"
   ],
   [
-    "arn",
-    "zrh"
+    "zurich",
+    "boston"
   ],
   [
-    "zrh",
-    "bos"
+    "stockholm",
+    "paris"
   ],
   [
-    "arn",
-    "cdg"
+    "paris",
+    "boston"
   ],
   [
-    "cdg",
-    "bos"
+    "stockholm",
+    "marsaalam"
   ],
   [
-    "arn",
-    "ory"
+    "stockholm",
+    "malmo"
   ],
   [
-    "arn",
-    "rmf"
+    "stockholm",
+    "oslo"
   ],
   [
-    "bma",
-    "mmx"
+    "stockholm",
+    "gothenburg"
   ],
   [
-    "arn",
-    "osl"
+    "stockholm",
+    "umea"
   ],
   [
-    "arn",
-    "got"
+    "stockholm",
+    "grancanaria"
   ],
   [
-    "arn",
-    "ume"
+    "stockholm",
+    "rome"
   ],
   [
-    "nyo",
-    "lpa"
+    "stockholm",
+    "salzburg"
   ],
   [
-    "arn",
-    "fco"
+    "stockholm",
+    "warsaw"
   ],
   [
-    "arn",
-    "szg"
+    "stockholm",
+    "dublin"
   ],
   [
-    "arn",
-    "waw"
+    "stockholm",
+    "corsica"
   ],
   [
-    "arn",
-    "dub"
+    "miami",
+    "madrid"
   ],
   [
-    "nyo",
-    "aja"
+    "madrid",
+    "stockholm"
   ],
   [
-    "mia",
-    "mad"
+    "copenhagen",
+    "london"
   ],
   [
-    "mad",
-    "arn"
+    "stockholm",
+    "lulea"
   ],
   [
-    "cph",
-    "lhr"
+    "boston",
+    "copenhagen"
   ],
   [
-    "arn",
-    "lla"
+    "london",
+    "barcelona"
   ],
   [
-    "bos",
-    "cph"
+    "stockholm",
+    "amsterdam"
   ],
   [
-    "arn",
-    "ewr"
+    "stockholm",
+    "prague"
   ],
   [
-    "lhr",
-    "bcn"
-  ],
-  [
-    "arn",
-    "ams"
-  ],
-  [
-    "arn",
-    "prg"
-  ],
-  [
-    "arn",
-    "sxf"
-  ],
-  [
-    "txl",
-    "arn"
+    "stockholm",
+    "berlin"
   ]
 ]

@@ -1,0 +1,457 @@
+{
+  "stockholm": {
+    "name": "Stockholm",
+    "coords": {
+      "lat": 59.334591,
+      "lng": 18.06324
+    }
+  },
+  "gothenburg": {
+    "name": "Göteborg",
+    "coords": {
+      "lat": 57.70887,
+      "lng": 11.97456
+    }
+  },
+  "lulea": {
+    "name": "Luleå",
+    "coords": {
+      "lat": 65.584819,
+      "lng": 22.156703
+    }
+  },
+  "malmo": {
+    "name": "Malmö",
+    "coords": {
+      "lat": 55.604981,
+      "lng": 13.003822
+    }
+  },
+  "umea": {
+    "name": "Umeå",
+    "coords": {
+      "lat": 63.825848,
+      "lng": 20.263035
+    }
+  },
+  "boston": {
+    "name": "Boston",
+    "coords": {
+      "lat": 42.360082,
+      "lng": -71.05888
+    }
+  },
+  "denver": {
+    "name": "Denver",
+    "coords": {
+      "lat": 39.739236,
+      "lng": -104.990251
+    }
+  },
+  "dc": {
+    "name": "Washington D.C.",
+    "coords": {
+      "lat": 38.907192,
+      "lng": -77.036871
+    }
+  },
+  "sanfrancisco": {
+    "name": "San Francisco",
+    "coords": {
+      "lat": 37.774929,
+      "lng": -122.419416
+    }
+  },
+  "miami": {
+    "name": "Miami",
+    "coords": {
+      "lat": 25.76168,
+      "lng": -80.19179
+    }
+  },
+  "seattle": {
+    "name": "Seattle",
+    "coords": {
+      "lat": 47.606209,
+      "lng": -122.332071
+    }
+  },
+  "la": {
+    "name": "Los Angeles",
+    "coords": {
+      "lat": 34.052234,
+      "lng": -118.243685
+    }
+  },
+  "nyc": {
+    "name": "New York City",
+    "coords": {
+      "lat": 40.712775,
+      "lng": -74.005973
+    }
+  },
+  "niagara": {
+    "name": "Niagara Falls",
+    "coords": {
+      "lat": 43.092461,
+      "lng": -79.04715
+    }
+  },
+  "corsica": {
+    "name": "Corsica",
+    "coords": {
+      "lat": 42.039604,
+      "lng": 9.012893
+    }
+  },
+  "amsterdam": {
+    "name": "Amsterdam",
+    "coords": {
+      "lat": 52.370216,
+      "lng": 4.895168
+    }
+  },
+  "barcelona": {
+    "name": "Barcelona",
+    "coords": {
+      "lat": 41.385064,
+      "lng": 2.173403
+    }
+  },
+  "biarritz": {
+    "name": "Biarritz",
+    "coords": {
+      "lat": 43.483152,
+      "lng": -1.558626
+    }
+  },
+  "paris": {
+    "name": "Paris",
+    "coords": {
+      "lat": 48.856614,
+      "lng": 2.352222
+    }
+  },
+  "copenhagen": {
+    "name": "Copenhagen",
+    "coords": {
+      "lat": 55.676097,
+      "lng": 12.568337
+    }
+  },
+  "dublin": {
+    "name": "Dublin",
+    "coords": {
+      "lat": 53.349805,
+      "lng": -6.26031
+    }
+  },
+  "rome": {
+    "name": "Rome",
+    "coords": {
+      "lat": 41.902783,
+      "lng": 12.496366
+    }
+  },
+  "helsinki": {
+    "name": "Helsinki",
+    "coords": {
+      "lat": 60.169856,
+      "lng": 24.938379
+    }
+  },
+  "london": {
+    "name": "London",
+    "coords": {
+      "lat": 51.507351,
+      "lng": -0.127758
+    }
+  },
+  "madrid": {
+    "name": "Madrid",
+    "coords": {
+      "lat": 40.416775,
+      "lng": -3.70379
+    }
+  },
+  "oslo": {
+    "name": "Oslo",
+    "coords": {
+      "lat": 59.913869,
+      "lng": 10.752245
+    }
+  },
+  "prague": {
+    "name": "Prague",
+    "coords": {
+      "lat": 50.075538,
+      "lng": 14.4378
+    }
+  },
+  "berlin": {
+    "name": "Berlin",
+    "coords": {
+      "lat": 52.520007,
+      "lng": 13.404954
+    }
+  },
+  "salzburg": {
+    "name": "Salzburg",
+    "coords": {
+      "lat": 47.80949,
+      "lng": 13.05501
+    }
+  },
+  "warsaw": {
+    "name": "Warsaw",
+    "coords": {
+      "lat": 52.229676,
+      "lng": 21.012229
+    }
+  },
+  "zurich": {
+    "name": "Zürich",
+    "coords": {
+      "lat": 47.376887,
+      "lng": 8.541694
+    }
+  },
+  "hongkong": {
+    "name": "Hong Kong",
+    "coords": {
+      "lat": 22.396428,
+      "lng": 114.109497
+    }
+  },
+  "beijing": {
+    "name": "Beijing",
+    "coords": {
+      "lat": 39.9042,
+      "lng": 116.407396
+    }
+  },
+  "marsaalam": {
+    "name": "Marsa Alam",
+    "coords": {
+      "lat": 25.067626,
+      "lng": 34.87897
+    }
+  },
+  "grancanaria": {
+    "name": "Gran Canaria",
+    "coords": {
+      "lat": 27.92022,
+      "lng": -15.547437
+    }
+  },
+  "lasvegas": {
+    "name": "Las Vegas",
+    "coords": {
+      "lat": 36.1699412,
+      "lng": -115.1398296
+    }
+  },
+  "bakersfield": {
+    "name": "Bakersfield",
+    "coords": {
+      "lat": 35.3732921,
+      "lng": -119.0187125
+    }
+  },
+  "grandcanyon": {
+    "name": "Grand Canyon",
+    "coords": {
+      "lat": 36.1069652,
+      "lng": -112.1129972
+    }
+  },
+  "beavercreek": {
+    "name": "Beaver Creek",
+    "coords": {
+      "lat": 39.604225,
+      "lng": -106.516515
+    }
+  },
+  "providence": {
+    "name": "Providence",
+    "coords": {
+      "lat": 41.8239891,
+      "lng": -71.4128343
+    }
+  },
+  "sangimignano": {
+    "name": "San Gimignano",
+    "coords": {
+      "lat": 43.4676324,
+      "lng": 11.0434909
+    }
+  },
+  "bristol": {
+    "name": "Bristol",
+    "coords": {
+      "lat": 41.6771101,
+      "lng": -71.26620249999999
+    }
+  },
+  "monterey": {
+    "name": "Monterey",
+    "coords": {
+      "lat": 36.6002378,
+      "lng": -121.8946761
+    }
+  },
+  "santabarbara": {
+    "name": "Santa Barbara",
+    "coords": {
+      "lat": 34.4208305,
+      "lng": -119.6981901
+    }
+  },
+  "capecod": {
+    "name": "Cape Cod",
+    "coords": {
+      "lat": 41.6687897,
+      "lng": -70.29624079999999
+    }
+  },
+  "barrington": {
+    "name": "Barrington",
+    "coords": {
+      "lat": 41.7406798,
+      "lng": -71.30860899999999
+    }
+  },
+  "lund": {
+    "name": "Lund",
+    "coords": {
+      "lat": 55.7046601,
+      "lng": 13.1910073
+    }
+  },
+  "karlstad": {
+    "name": "Karlstad",
+    "coords": {
+      "lat": 59.4021806,
+      "lng": 13.5114978
+    }
+  },
+  "are": {
+    "name": "Åre",
+    "coords": {
+      "lat": 63.3990428,
+      "lng": 13.0815058
+    }
+  },
+  "salen": {
+    "name": "Sälen",
+    "coords": {
+      "lat": 61.1613853,
+      "lng": 13.2630156
+    }
+  },
+  "saintcast": {
+    "name": "Saint-Cast-le-Guildo",
+    "coords": {
+      "lat": 48.632091,
+      "lng": -2.259804
+    }
+  },
+  "ravi": {
+    "name": "Ravi",
+    "coords": {
+      "lat": 42.9108402,
+      "lng": 10.9189273
+    }
+  },
+  "pisa": {
+    "name": "Pisa",
+    "coords": {
+      "lat": 43.7228386,
+      "lng": 10.4016888
+    }
+  },
+  "andorra": {
+    "name": "Andorra",
+    "coords": {
+      "lat": 42.506285,
+      "lng": 1.521801
+    }
+  },
+  "sansebastian": {
+    "name": "San Sebastian",
+    "coords": {
+      "lat": 43.318334,
+      "lng": -1.9812313
+    }
+  },
+  "trysil": {
+    "name": "Trysil",
+    "coords": {
+      "lat": 61.3169004,
+      "lng": 12.2598392
+    }
+  },
+  "leksand": {
+    "name": "Leksand",
+    "coords": {
+      "lat": 60.7303082,
+      "lng": 14.9998922
+    }
+  },
+  "sunnemo": {
+    "name": "Sunnemo",
+    "coords": {
+      "lat": 59.8858536,
+      "lng": 13.7197028
+    }
+  },
+  "sundborn": {
+    "name": "Sundborn",
+    "coords": {
+      "lat": 60.65268520000001,
+      "lng": 15.7748181
+    }
+  },
+  "vasteras": {
+    "name": "Västerås",
+    "coords": {
+      "lat": 59.60990049999999,
+      "lng": 16.5448092
+    }
+  },
+  "uppsala": {
+    "name": "Uppsala",
+    "coords": {
+      "lat": 59.85856380000001,
+      "lng": 17.6389267
+    }
+  },
+  "sala": {
+    "name": "Sala",
+    "coords": {
+      "lat": 59.9208594,
+      "lng": 16.606328
+    }
+  },
+  "avesta": {
+    "name": "Avesta",
+    "coords": {
+      "lat": 60.14532999999999,
+      "lng": 16.1738399
+    }
+  },
+  "badgastein": {
+    "name": "Bad Gastein",
+    "coords": {
+      "lat": 47.1140887,
+      "lng": 13.132661
+    }
+  },
+  "karlskoga": {
+    "name": "Karlskoga",
+    "coords": {
+      "lat": 59.32863399999999,
+      "lng": 14.536414
+    }
+  }
+}

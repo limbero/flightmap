@@ -1,53 +1,83 @@
-let map, flights = [], airport_markers = {};
+let map, trips = [], place_markers = {};
 const iconSizeAtZoomLevel = [null, 3, 3, 3, 3, 5, 7, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 
-function newflight(path, airports) {
-  let geodesicPoly = new google.maps.Polyline({
-    strokeColor: '#990033',
+function newPath(coords, color) {
+  return geodesicPoly = new google.maps.Polyline({
+    path: coords,
+    strokeColor: color,
     strokeOpacity: 1.0,
     strokeWeight: 1,
     geodesic: true,
     map: map
   });
-
-  flights.push({path: path, polygon: geodesicPoly});
-  geodesicPoly.setPath([airports[path[0]].coords, airports[path[1]].coords]);
 }
 
-function newairport(location, id, airports) {
+function newFlight(between, places) {
+  trips.push({
+    between: between,
+    polygon: newPath([places[between[0]].coords, places[between[1]].coords], '#990033'),
+    type: 'flight'
+  });
+}
+
+function newDrive(between, path) {
+  trips.push({
+    between: between,
+    polygon: newPath(path, '#003399'),
+    type: 'drive'
+  });
+}
+
+function newBusRide(between, path) {
+  trips.push({
+    between: between,
+    polygon: newPath(path, '#CC00CC'),
+    type: 'busride'
+  });
+}
+
+function newTrainRide(between, path) {
+  trips.push({
+    between: between,
+    polygon: newPath(path, '#009933'),
+    type: 'trainride'
+  });
+}
+
+function newPlace(location, id, places) {
   let marker = new google.maps.Marker({
     position: location,
     map: map,
     id: id,
-    icon: circleIcon(0.5, iconSizeAtZoomLevel[map.getZoom()])
+    icon: circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()])
   });
 
-  airport_markers[marker.id] = marker;
+  place_markers[marker.id] = marker;
 
   google.maps.event.addListener(marker, 'mouseover', function (event) {
-    for (let id in airport_markers) {
-      airport_markers[id].setIcon(circleIcon(0.1, iconSizeAtZoomLevel[map.getZoom()]));
+    for (let id in place_markers) {
+      place_markers[id].setIcon(circleIcon(0.1, iconSizeAtZoomLevel[map.getZoom()]));
     }
 
     this.setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
-    let this_airport_name = airports[this.id].name;
+    let this_place_name = places[this.id].name;
     let connects = [];
 
-    for (let i=0; i < flights.length; i++) {
-      if (this.id == flights[i].path[0]) {
-        airport_markers[flights[i].path[1]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
-        connects.push(airports[flights[i].path[1]].name);
-        flights[i].polygon.setOptions({
+    for (let i=0; i < trips.length; i++) {
+      if (this.id == trips[i].between[0]) {
+        place_markers[trips[i].between[1]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
+        connects.push(places[trips[i].between[1]].name);
+        trips[i].polygon.setOptions({
                 strokeOpacity : 1.0
             });
-      } else if (this.id == flights[i].path[1]) {
-        airport_markers[flights[i].path[0]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
-        connects.push(airports[flights[i].path[0]].name);
-        flights[i].polygon.setOptions({
+      } else if (this.id == trips[i].between[1]) {
+        place_markers[trips[i].between[0]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
+        connects.push(places[trips[i].between[0]].name);
+        trips[i].polygon.setOptions({
                 strokeOpacity : 1.0
             });
       } else {
-        flights[i].polygon.setOptions({
+        trips[i].polygon.setOptions({
                 strokeOpacity : 0.1
             });
       }
@@ -55,7 +85,7 @@ function newairport(location, id, airports) {
     connects.sort();
 
     let infobox = document.getElementById("infobox");
-    infobox.getElementsByTagName("h2")[0].innerHTML = this_airport_name;
+    infobox.getElementsByTagName("h2")[0].innerHTML = this_place_name;
 
     let ul = document.createElement("ul");
     for (let i=0; i < connects.length; i++) {
@@ -73,12 +103,12 @@ function newairport(location, id, airports) {
   });
 
   google.maps.event.addListener(marker, 'mouseout', function (event) {
-    for (let id in airport_markers) {
-      airport_markers[id].setIcon(circleIcon(0.5, iconSizeAtZoomLevel[map.getZoom()]));
+    for (let id in place_markers) {
+      place_markers[id].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
     }
 
-    for (let i=0; i < flights.length; i++) {
-      flights[i].polygon.setOptions({
+    for (let i=0; i < trips.length; i++) {
+      trips[i].polygon.setOptions({
               strokeOpacity : 1.0
           });
     }
@@ -91,10 +121,10 @@ function newairport(location, id, airports) {
 function circleIcon(opacity, scale) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
-    strokeColor: '#990033',
+    strokeColor: '#FFFFFF',
     strokeOpacity: 0.0,
     strokeWeight: 0,
-    fillColor: '#990033',
+    fillColor: '#FFFFFF',
     fillOpacity: opacity,
     scale: scale //pixels
   };
@@ -109,9 +139,9 @@ function initMap() {
 
   google.maps.event.addListener(map, 'zoom_changed', function() {
     console.log('new zoom: ' + map.getZoom());
-    for (let id in airport_markers) {
-      let oldOpacity = airport_markers[id].getIcon().fillOpacity;
-      airport_markers[id].setIcon(circleIcon(oldOpacity, iconSizeAtZoomLevel[map.getZoom()]));
+    for (let id in place_markers) {
+      let oldOpacity = place_markers[id].getIcon().fillOpacity;
+      place_markers[id].setIcon(circleIcon(oldOpacity, iconSizeAtZoomLevel[map.getZoom()]));
     }
   });
 
@@ -121,26 +151,38 @@ function initMap() {
     map.setOptions({styles: theme});
   });
 
-  fetch('data/airports.json')
-  .then(function(response) {
-    return response.json();
-  }).then(function(airports) {
-    console.log(airports);
+  fetch('data/places.json')
+  .then(response => response.json())
+  .then(places => {
+    console.log(places);
     let bounds = new google.maps.LatLngBounds();
-    for (let id in airports) {
-      bounds.extend(airports[id].coords);
-      newairport(airports[id].coords, id, airports);
+    for (let id in places) {
+      bounds.extend(places[id].coords);
+      newPlace(places[id].coords, id, places);
     }
     map.fitBounds(bounds);
     // map.setZoom(map.getZoom()-1);
 
-    fetch('data/flights.json')
-    .then(function(response) {
-      return response.json();
-    }).then(function(paths) {
-      for (let i=0; i < paths.length; i++) {
-        newflight(paths[i], airports);
-      }
+    fetch('data/trainrides.json')
+    .then(response => response.json())
+    .then(trainrides => {
+      trainrides.map(trainride => newTrainRide(trainride.between, trainride.coords));
+
+      fetch('data/busrides.json')
+      .then(response => response.json())
+      .then(busrides => {
+        busrides.map(busride => newBusRide(busride.between, busride.coords));
+      
+        fetch('data/drives.json')
+        .then(response => response.json())
+        .then(drives => {
+          drives.map(drive => newDrive(drive.between, drive.coords));
+          
+          fetch('data/flights.json')
+          .then(response => response.json())
+          .then(paths => paths.map(between => newFlight(between, places)));
+        });
+      });
     });
   });
 

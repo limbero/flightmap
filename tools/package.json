@@ -1,0 +1,12 @@
+{
+  "name": "polylines",
+  "version": "1.0.0",
+  "description": "Everywhere I've gone by car, bus or train.",
+  "main": "extract.js",
+  "author": "limbero",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/polyline": "^0.2.0",
+    "node-fetch": "^2.0.0"
+  }
+}
