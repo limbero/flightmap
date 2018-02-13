@@ -1,5 +1,5 @@
 let map, flights = [], airport_markers = {};
-const iconSizeAtZoomLevel = [null, 3, 3, 3, 3, 5, 7, 9]
+const iconSizeAtZoomLevel = [null, 3, 3, 3, 3, 5, 7, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 
 function newflight(path, airports) {
   let geodesicPoly = new google.maps.Polyline({
@@ -110,7 +110,8 @@ function initMap() {
   google.maps.event.addListener(map, 'zoom_changed', function() {
     console.log('new zoom: ' + map.getZoom());
     for (let id in airport_markers) {
-      airport_markers[id].setIcon(circleIcon(0.5, iconSizeAtZoomLevel[map.getZoom()]));
+      let oldOpacity = airport_markers[id].getIcon().fillOpacity;
+      airport_markers[id].setIcon(circleIcon(oldOpacity, iconSizeAtZoomLevel[map.getZoom()]));
     }
   });
 
