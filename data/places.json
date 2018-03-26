@@ -467,5 +467,19 @@
       "lat": 25.2854,
       "lng": 51.5310
     }
+  },
+  "sydney": {
+    "name": "Sydney",
+    "coords": {
+      "lat": -33.8688,
+      "lng": 151.2093
+    }
+  },
+  "goldcoast": {
+    "name": "Gold Coast",
+    "coords": {
+      "lat": -28.0167,
+      "lng": 153.4000
+    }
   }
 }
