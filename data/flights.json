@@ -166,5 +166,13 @@
   [
     "stockholm",
     "doha"
+  ],
+  [
+    "doha",
+    "sydney"
+  ],
+  [
+    "sydney",
+    "goldcoast"
   ]
 ]
