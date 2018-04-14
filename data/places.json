@@ -465,7 +465,7 @@
     "name": "Doha",
     "coords": {
       "lat": 25.2854,
-      "lng": 51.5310
+      "lng": 51.531
     }
   },
   "sydney": {
@@ -479,7 +479,14 @@
     "name": "Gold Coast",
     "coords": {
       "lat": -28.0167,
-      "lng": 153.4000
+      "lng": 153.4
+    }
+  },
+  "byronbay": {
+    "name": "Byron Bay",
+    "coords": {
+      "lat": -28.6473671,
+      "lng": 153.601977
     }
   }
 }
