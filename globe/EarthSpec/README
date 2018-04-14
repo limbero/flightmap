@@ -1,0 +1,22 @@
+
+to install:
+
+just extract the archive to /celestia ( $CELESTIA_ROOT )
+or copy /extras/JohnVV to /celestia ( $CELESTIA_ROOT )
+
+the EarthSpec.zip extracts to:
+
+`-- extras
+    `-- JohnVV
+        |-- EarthSpec.ssc
+        `-- textures
+            |-- hires
+            |   `-- EarthSpec.png
+            |-- lores
+            |   `-- EarthSpec.png
+            `-- medres
+                `-- EarthSpec.png
+
+
+The orig. earth map that the specular map was made from ,I think, BlueMarble and made in 2004 
+
