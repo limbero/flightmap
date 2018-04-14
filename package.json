@@ -1,0 +1,11 @@
+{
+  "name": "flightmap",
+  "description": "Every trip I've ever taken!",
+  "authors": "limbero",
+  "version": "1.0.0",
+  "main": "",
+  "dependencies": {
+    "three": "^0.91.0",
+    "three.meshline": "^1.0.3"
+  }
+}
