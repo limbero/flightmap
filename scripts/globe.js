@@ -24,8 +24,8 @@ scene.add(directionalLight);
 let earthGeometry = new THREE.SphereGeometry(100, 64, 32);
 
 let earthMaterial = new THREE.MeshPhongMaterial();
-earthMaterial.map = new THREE.TextureLoader().load('globe/earth_4k_2.jpg');
-earthMaterial.bumpMap = new THREE.TextureLoader().load('globe/earth_bump_4k_2.jpg');
+earthMaterial.map = new THREE.TextureLoader().load('globe/earth_4k.jpg');
+earthMaterial.bumpMap = new THREE.TextureLoader().load('globe/earth_bump_4k.jpg');
 earthMaterial.bumpScale = 1;
 earthMaterial.specularMap = new THREE.TextureLoader().load('globe/water_4k.png');
 earthMaterial.specular = new THREE.Color('grey');

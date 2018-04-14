@@ -1,5 +1,0 @@
-
-Modify "Earth" "Sol"
-{
-        SpecularTexture "EarthSpec.png"
-}
