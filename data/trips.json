@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Studs",
+    "when": 2016,
+    "legs": [
+      {
+        "from": "stockholm",
+        "to": "nyc",
+        "type": "flight"
+      }, {
+        "from": "nyc",
+        "to": "boston",
+        "type": "trainride"
+      }, {
+        "from": "boston",
+        "to": "seattle",
+        "type": "flight"
+      }, {
+        "from": "seattle",
+        "to": "sanfrancisco",
+        "type": "flight"
+      }, {
+        "from": "sanfrancisco",
+        "to": "monterey",
+        "type": "drive"
+      }, {
+        "from": "monterey",
+        "to": "santabarbara",
+        "type": "drive"
+      }, {
+        "from": "santabarbara",
+        "to": "la",
+        "type": "drive"
+      }, {
+        "from": "la",
+        "to": "boston",
+        "type": "flight"
+      }, {
+        "from": "boston",
+        "to": "london",
+        "type": "flight"
+      }, {
+        "from": "london",
+        "to": "stockholm",
+        "type": "flight"
+      }
+    ]
+  }, {
+    "name": "Before Harvard",
+    "when": 2013,
+    "legs": [
+      {
+        "from": "stockholm",
+        "to": "boston",
+        "type": "flight"
+      }, {
+        "from": "boston",
+        "to": "denver",
+        "type": "flight"
+      }, {
+        "from": "denver",
+        "to": "beavercreek",
+        "type": "drive"
+      }, {
+        "from": "beavercreek",
+        "to": "grandcanyon",
+        "type": "drive"
+      }, {
+        "from": "grandcanyon",
+        "to": "lasvegas",
+        "type": "drive"
+      }, {
+        "from": "lasvegas",
+        "to": "bakersfield",
+        "type": "drive"
+      }, {
+        "from": "bakersfield",
+        "to": "sanfrancisco",
+        "type": "drive"
+      }, {
+        "from": "sanfrancisco",
+        "to": "copenhagen",
+        "type": "flight"
+      }, {
+        "from": "copenhagen",
+        "to": "stockholm",
+        "type": "flight"
+      }
+    ]
+  }, {
+    "name": "Christmas in the States",
+    "when": 2015,
+    "legs": [
+      {
+        "from": "stockholm",
+        "to": "london",
+        "type": "flight"
+      }, {
+        "from": "london",
+        "to": "dc",
+        "type": "flight"
+      }, {
+        "from": "dc",
+        "to": "bristol",
+        "type": "drive"
+      }, {
+        "from": "bristol",
+        "to": "providence",
+        "type": "drive"
+      }, {
+        "from": "providence",
+        "to": "boston",
+        "type": "drive"
+      }, {
+        "from": "boston",
+        "to": "miami",
+        "type": "flight"
+      }, {
+        "from": "miami",
+        "to": "madrid",
+        "type": "flight"
+      }, {
+        "from": "madrid",
+        "to": "stockholm",
+        "type": "flight"
+      }
+    ]
+  }
+]

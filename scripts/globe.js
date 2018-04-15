@@ -1,135 +1,221 @@
 // couldn't have done this without http://blog.mastermaps.com/2013/09/creating-webgl-earth-with-threejs.html
 // and http://www.brunodigiuseppe.com/en/flight-paths-with-three-js/
 
-let renderer	= new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.autoClear = false;
-renderer.setClearColor(0xFFFFFF, 0.0);
+let place_markers = {};
+let trip_lines = {};
+let place_marker_list = [];
+let trip_line_list = [];
+let trip_list;
 
-document.body.appendChild(renderer.domElement);
+let tripShown;
 
-let scene	= new THREE.Scene();
-scene.background = new THREE.Color( 0xFFFFFF );
+let emoji = {
+  busride: '🚌',
+  trainride: '🚂',
+  drive: '🚗',
+  flight: '✈️'
+};
 
-let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
-camera.position.z = 400;
+let scene;
+let camera;
+let controls;
+let renderer;
+let globeMesh;
+let cloudMesh;
 
-let ambientLight	= new THREE.AmbientLight(0x999999);
-scene.add(ambientLight);
+document.addEventListener("DOMContentLoaded", async event => {
+  initiateGlobeWithClouds();
 
-let directionalLight	= new THREE.DirectionalLight(0xCCCCCC, 1);
-directionalLight.position.set(0, 250, 250);
-scene.add(directionalLight);
+  let lastTimeMsec = null;
+  requestAnimationFrame(function animate(nowMsec) {
+    // keep looping
+    requestAnimationFrame(animate);
+    // measure time
+    lastTimeMsec	= lastTimeMsec || nowMsec - 1000/60;
+    let deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
+    lastTimeMsec	= nowMsec;
+    
+    // earthMesh.rotateY(1/64 * deltaMsec/1000);
+    cloudMesh.rotateY(1/64 * deltaMsec/1000);
 
-let earthGeometry = new THREE.SphereGeometry(100, 64, 32);
+    controls.update();
+    renderer.clear();
+    renderer.render(scene, camera);
+  });
 
-let earthMaterial = new THREE.MeshPhongMaterial();
-earthMaterial.map = new THREE.TextureLoader().load('globe/earth_4k.jpg');
-earthMaterial.bumpMap = new THREE.TextureLoader().load('globe/earth_bump_4k.jpg');
-earthMaterial.bumpScale = 1;
-earthMaterial.specularMap = new THREE.TextureLoader().load('globe/water_4k.png');
-earthMaterial.specular = new THREE.Color('grey');
-earthMaterial.shininess = 5;
-
-let earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
-
-let cloudGeometry = new THREE.SphereGeometry(103, 64, 32)
-let cloudMaterial = new THREE.MeshPhongMaterial({
-  map: new THREE.TextureLoader().load('globe/fair_clouds_4k.png'),
-  side: THREE.DoubleSide,
-  opacity: 1,
-  transparent: true,
-  depthWrite: false,
-});
-let cloudMesh = new THREE.Mesh(cloudGeometry, cloudMaterial)
-earthMesh.add(cloudMesh)
-
-scene.add(earthMesh);
-
-let controls = new THREE.OrbitControls(camera);
-controls.minDistance = 200;
-controls.maxDistance = 500;
-controls.enableDamping = true;
-controls.dampingFactor = 0.5;
-
-let lastTimeMsec = null;
-requestAnimationFrame(function animate(nowMsec) {
-  // keep looping
-  requestAnimationFrame(animate);
-  // measure time
-  lastTimeMsec	= lastTimeMsec || nowMsec - 1000/60;
-  let deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
-  lastTimeMsec	= nowMsec;
+  await fetchAllData();
   
-  // earthMesh.rotateY(1/64 * deltaMsec/1000);
-  // cloudMesh.rotateY(1/128 * deltaMsec/1000);
+  let infobox = document.getElementById("infobox");
+  infobox.getElementsByTagName("h2")[0].innerHTML = "Trips";
 
-  controls.update();
-	renderer.clear();
-  renderer.render(scene, camera);
+  let div = document.createElement("div");
+  trip_list.forEach((trip, index) => {
+    let p = document.createElement("p");
+    let a = document.createElement("a");
+    a.innerHTML = `${trip.name} (${trip.when})`;
+    a.setAttribute('data-index', index);
+
+    a.onclick = (event) => {
+      let index = event.target.getAttribute('data-index');
+      if (tripShown === index) {
+        tripShown = undefined;
+        toggleAllVisibility(true);
+      } else {
+        showTrip(index);
+        tripShown = index;
+      }
+    };
+    p.appendChild(a);
+    div.appendChild(p);
+  });
+  let p = infobox.getElementsByTagName("p")[0];
+  while (p.hasChildNodes()) {
+    p.removeChild(p.lastChild);
+  }
+  infobox.appendChild(div);
+
+  infobox.style.visibility = "visible";
 });
 
-fetch('data/places.json')
-.then(response => response.json())
-.then(places => {
+function fetchJson(uri) {
+  return fetch(uri).then(response => response.json());
+}
+async function fetchAllData() {
+  const places = await fetchJson('data/places.json');
+  
   Object.keys(places).forEach(key => {
-    earthMesh.add(makeMarker(places[key].coords, 0xFFFFFF));
+    let place = makeMarker(places[key].coords, 0xFFFFFF, key);
+    place_markers[key] = place;
+    place_marker_list.push(place);
+    earthMesh.add(place);
   });
 
-  fetch('data/flights.json')
-  .then(response => response.json())
-  .then(flights => {
-    flights.forEach(flight => {
-      let [to, from] = flight;
-      addFlight(places[from].coords, places[to].coords, earthMesh);
-    });
+  const flights = await fetchJson('data/flights.json');
+  flights.forEach(flight => {
+    let [to, from] = flight;
+    addFlight(places[from].coords, places[to].coords, earthMesh, from, to);
   });
 
-  fetch('data/drives.json')
-  .then(response => response.json())
-  .then(drives => {
-    drives.forEach(drive => {
-      addDrive(drive.coords, earthMesh);
-    });
+  const drives = await fetchJson('data/drives.json');
+  drives.forEach(drive => {
+    addDrive(drive.coords, earthMesh, drive.between[0], drive.between[1]);
   });
 
-  fetch('data/busrides.json')
-  .then(response => response.json())
-  .then(drives => {
-    drives.forEach(drive => {
-      addBusRide(drive.coords, earthMesh);
-    });
+  const busrides = await fetchJson('data/busrides.json');
+  busrides.forEach(busride => {
+    addBusRide(busride.coords, earthMesh, busride.between[0], busride.between[1]);
   });
 
-  fetch('data/trainrides.json')
-  .then(response => response.json())
-  .then(drives => {
-    drives.forEach(drive => {
-      addTrainRide(drive.coords, earthMesh);
-    });
+  const trainrides = await fetchJson('data/trainrides.json');
+  trainrides.forEach(trainride => {
+    addTrainRide(trainride.coords, earthMesh, trainride.between[0], trainride.between[1]);
   });
-});
 
-function addBusRide(coords, scene) {
-  addComplexPath(coords, scene, 0xCC00CC);
+  const trips = await fetchJson('data/trips.json');
+  trip_list = trips.sort((a, b) => {
+    return a.when - b.when;
+  });;
 }
 
-function addDrive(coords, scene) {
-  addComplexPath(coords, scene, 0x003399);
+function initiateGlobeWithClouds() {
+  renderer	= new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.autoClear = false;
+  renderer.setClearColor(0xFFFFFF, 0.0);
+
+  document.getElementById('globe').appendChild(renderer.domElement);
+
+  scene	= new THREE.Scene();
+  scene.background = new THREE.Color(0xFFFFFF);
+
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
+  camera.position.z = 300;
+
+  let ambientLight	= new THREE.AmbientLight(0x999999);
+  scene.add(ambientLight);
+
+  let directionalLight	= new THREE.DirectionalLight(0xCCCCCC, 1);
+  directionalLight.position.set(0, 250, 250);
+  scene.add(directionalLight);
+
+  let earthGeometry = new THREE.SphereGeometry(100, 64, 32);
+
+  let earthMaterial = new THREE.MeshPhongMaterial();
+  earthMaterial.map = new THREE.TextureLoader().load('globe/earth_4k.jpg');
+  earthMaterial.bumpMap = new THREE.TextureLoader().load('globe/earth_bump_4k.jpg');
+  earthMaterial.bumpScale = 1;
+  earthMaterial.specularMap = new THREE.TextureLoader().load('globe/water_4k.png');
+  earthMaterial.specular = new THREE.Color('grey');
+  earthMaterial.shininess = 5;
+
+  earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
+
+  let cloudGeometry = new THREE.SphereGeometry(103, 64, 32);
+  let cloudMaterial = new THREE.MeshPhongMaterial({
+    map: new THREE.TextureLoader().load('globe/fair_clouds_4k.png'),
+    side: THREE.DoubleSide,
+    opacity: 1,
+    transparent: true,
+    depthWrite: false,
+  });
+  cloudMesh = new THREE.Mesh(cloudGeometry, cloudMaterial);
+  cloudMesh.name = 'clouds';
+  earthMesh.add(cloudMesh);
+
+  scene.add(earthMesh);
+
+  controls = new THREE.OrbitControls(camera);
+  controls.minDistance = 200;
+  controls.maxDistance = 500;
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.5;
 }
 
-function addFlight(from, to, scene) {
+function toggleAllVisibility(bool) {
+  place_marker_list.forEach(marker => {
+    marker.visible = bool;
+  });
+  trip_line_list.forEach(trip => {
+    trip.visible = bool;
+  });
+}
+function showTrip(index) {
+  toggleAllVisibility(false);
+  let trip = trip_list[index];
+  trip.legs.forEach(leg => {
+    place_markers[leg.from].visible = true;
+    for (let i = 0; i < trip_lines[leg.from].length; i++) {
+      let line = trip_lines[leg.from][i];
+      if (line.to === leg.to && line.type === leg.type) {
+        line.trip.visible = true;
+        break;
+      }
+    }
+  });
+}
+
+function addBusRide(coords, scene, loc1, loc2) {
+  addComplexPath(coords, scene, 0xCC00CC, loc1, loc2, 'busride');
+}
+
+function addDrive(coords, scene, loc1, loc2) {
+  addComplexPath(coords, scene, 0x003399, loc1, loc2, 'drive');
+}
+
+function addFlight(from, to, scene, loc1, loc2) {
   let vT = convertCoordsToVec3(to);
   let vF = convertCoordsToVec3(from);
 
-  scene.add(makeFlightPath(vF, vT));
+  let flight = makeFlightPath(vF, vT);
+  addToTripLines(flight, loc1, loc2, 'flight');
+  scene.add(flight);
 }
 
-function addTrainRide(coords, scene) {
-  addComplexPath(coords, scene, 0x009933);
+function addTrainRide(coords, scene, loc1, loc2) {
+  addComplexPath(coords, scene, 0x009933, loc1, loc2, 'trainride');
 }
 
-function addComplexPath(coords, scene, color) {
+function addComplexPath(coords, scene, color, loc1, loc2, type) {
   let geometry = new THREE.Geometry();
   geometry.vertices = coords.map(coord => convertCoordsToVec3(coord));
 
@@ -142,7 +228,21 @@ function addComplexPath(coords, scene, color) {
   });
 
   let mesh = new THREE.Mesh(line.geometry, meshMaterial);
+  addToTripLines(mesh, loc1, loc2, type);
   scene.add(mesh);
+}
+
+function addToTripLines(trip, loc1, loc2, type) {
+  trip_line_list.push(trip);
+  if (!trip_lines.hasOwnProperty(loc1)) {
+    trip_lines[loc1] = [];
+  }
+  trip_lines[loc1].push({ trip: trip, to: loc2, type: type });
+
+  if (!trip_lines.hasOwnProperty(loc2)) {
+    trip_lines[loc2] = [];
+  }
+  trip_lines[loc2].push({ trip: trip, to: loc1, type: type });
 }
 
 // credit to http://www.brunodigiuseppe.com/en/flight-paths-with-three-js/
@@ -205,9 +305,10 @@ function convertCoordsToVec3(coords) {
     Math.sin(lat), 
     Math.cos(lat) * Math.sin(lon) ).multiplyScalar(100);
 }
-function makeMarker(coordinates, color) {
+function makeMarker(coordinates, color, name) {
   let marker = new THREE.Mesh( new THREE.SphereGeometry(0.3, 32, 16), new THREE.MeshBasicMaterial({color: color}) );
   let coords = convertCoordsToVec3(coordinates);
   marker.position.set(coords.x, coords.y, coords.z);
+  marker.name = name;
   return marker;
 }
