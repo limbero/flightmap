@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", async event => {
     // keep looping
     requestAnimationFrame(animate);
     // measure time
-    lastTimeMsec	= lastTimeMsec || nowMsec - 1000/60;
-    let deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
-    lastTimeMsec	= nowMsec;
+    lastTimeMsec = lastTimeMsec || nowMsec - 1000/60;
+    let deltaMsec = Math.min(200, nowMsec - lastTimeMsec);
+    lastTimeMsec = nowMsec;
     
     // earthMesh.rotateY(1/64 * deltaMsec/1000);
     cloudMesh.rotateY(1/64 * deltaMsec/1000);
@@ -118,23 +118,23 @@ async function fetchAllData() {
 }
 
 function initiateGlobeWithClouds() {
-  renderer	= new THREE.WebGLRenderer({ antialias: true });
+  renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.autoClear = false;
   renderer.setClearColor(0xFFFFFF, 0.0);
 
   document.getElementById('globe').appendChild(renderer.domElement);
 
-  scene	= new THREE.Scene();
+  scene = new THREE.Scene();
   scene.background = new THREE.Color(0xFFFFFF);
 
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
   camera.position.z = 300;
 
-  let ambientLight	= new THREE.AmbientLight(0x999999);
+  let ambientLight = new THREE.AmbientLight(0x999999);
   scene.add(ambientLight);
 
-  let directionalLight	= new THREE.DirectionalLight(0xCCCCCC, 1);
+  let directionalLight = new THREE.DirectionalLight(0xCCCCCC, 1);
   directionalLight.position.set(0, 250, 250);
   scene.add(directionalLight);
 
@@ -165,7 +165,7 @@ function initiateGlobeWithClouds() {
   scene.add(earthMesh);
 
   controls = new THREE.OrbitControls(camera);
-  controls.minDistance = 200;
+  controls.minDistance = 150;
   controls.maxDistance = 500;
   controls.enableDamping = true;
   controls.dampingFactor = 0.5;
