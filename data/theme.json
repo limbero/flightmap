@@ -1,7 +1,7 @@
 [
   {
     "elementType": "geometry.fill",
-    "stylers": [{"color": "#dfd2ae"}]
+    "stylers": [{"color": "#ddcc99"}]
   },
   {
     "elementType": "geometry.stroke",
@@ -10,7 +10,7 @@
   {
     "featureType": "water",
     "elementType": "geometry.fill",
-    "stylers": [{"color": "#b9d3c2"}]
+    "stylers": [{"color": "#aabbcc"}]
   },
   {
     "featureType": "landscape.natural.terrain",
@@ -29,11 +29,11 @@
   },
   {
     "elementType": "labels.text.fill",
-    "stylers": [{"color": "#b9b392"}]
+    "stylers": [{"color": "#778899"}]
   },
   {
     "elementType": "labels.text.stroke",
-    "stylers": [{"color": "#dfd2ae"}]
+    "stylers": [{"color": "#ddddaa"}]
   },
   {
     "elementType": "labels.icon",
@@ -42,7 +42,7 @@
   {
     "featureType": "road",
     "elementType": "geometry.fill",
-    "stylers": [{"color": "#dfd2ae"}]
+    "stylers": [{"color": "#ddddaa"}]
   },
   {
     "featureType": "road",

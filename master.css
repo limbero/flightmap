@@ -1,0 +1,49 @@
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* My stuff */
+
+a:hover {
+  cursor: pointer;
+}
+
+p.master {
+  display: inline-block;
+  width: 35vw;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 3em;
+  font-weight: 100;
+  text-align: center;
+}
+p.master a {
+  text-decoration: none;
+  
+  display: inline-block;
+  background-color: #000;
+  color: #FFF;
+  padding: 0 .35em 0.15em;
+  margin: .2em 0;
+
+  box-shadow: 5px 5px 0 #888;
+  transition: box-shadow .25s, transform .25s;
+}
+p.master a:hover {
+  box-shadow: 15px 15px 0 #888;
+  transform: translate(-5px, -5px);
+}

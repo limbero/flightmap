@@ -21,7 +21,7 @@ function newPath(coords, color) {
 function newFlight(between, places) {
   trips.push({
     between: between,
-    polygon: newPath([places[between[0]].coords, places[between[1]].coords], '#990033'),
+    polygon: newPath([places[between[0]].coords, places[between[1]].coords], '#FF6666'),
     type: 'flight'
   });
 }
@@ -29,7 +29,7 @@ function newFlight(between, places) {
 function newDrive(between, path) {
   trips.push({
     between: between,
-    polygon: newPath(path, '#003399'),
+    polygon: newPath(path, '#6666FF'),
     type: 'drive'
   });
 }
@@ -151,7 +151,12 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 45.000, lng: 0.000},
     zoom: 3,
-    streetViewControl: false
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: true,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   });
 
   google.maps.event.addListener(map, 'zoom_changed', function() {
