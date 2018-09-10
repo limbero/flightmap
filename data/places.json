@@ -495,5 +495,26 @@
       "lat": 47.1296346,
       "lng": 10.2681786
     }
+  },
+  "atlanta": {
+    "name": "Atlanta, GA",
+    "coords": {
+      "lat": 33.7489954,
+      "lng": -84.3879824
+    }
+  },
+  "nola": {
+    "name": "New Orleans",
+    "coords": {
+      "lat": 29.95106579999999,
+      "lng": -90.0715323
+    }
+  },
+  "split": {
+    "name": "Split",
+    "coords": {
+      "lat": 43.5081323,
+      "lng": 16.4401935
+    }
   }
 }
