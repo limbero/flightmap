@@ -519,7 +519,7 @@
   },
   "dubai": {
     "name": "Dubai",
-    "coords: {
+    "coords": {
       "lat": 25.2048,
       "lng": 55.2708
     }
