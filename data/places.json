@@ -516,5 +516,19 @@
       "lat": 43.5081323,
       "lng": 16.4401935
     }
+  },
+  "dubai": {
+    "name": "Dubai",
+    "coords: {
+      "lat": 25.2048,
+      "lng": 55.2708
+    }
+  },
+  "bangkok": {
+    "name": "Bangkok",
+    "coords": {
+      "lat": 13.7563,
+      "lng": 100.5018
+    }
   }
 }
