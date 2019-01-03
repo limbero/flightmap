@@ -194,5 +194,13 @@
   [
     "dubai",
     "bangkok"
+  ],
+  [
+    "boston",
+    "reykjavik"
+  ],
+  [
+    "reykjavik",
+    "copenhagen"
   ]
 ]
