@@ -116,7 +116,8 @@
     "coords": {
       "lat": 41.385064,
       "lng": 2.173403
-    }
+    },
+    "layover": true
   },
   "biarritz": {
     "name": "Biarritz",
@@ -158,7 +159,8 @@
     "coords": {
       "lat": 60.169856,
       "lng": 24.938379
-    }
+    },
+    "layover": true
   },
   "london": {
     "name": "London",
@@ -172,7 +174,8 @@
     "coords": {
       "lat": 40.416775,
       "lng": -3.70379
-    }
+    },
+    "layover": true
   },
   "oslo": {
     "name": "Oslo",
@@ -200,7 +203,8 @@
     "coords": {
       "lat": 47.80949,
       "lng": 13.05501
-    }
+    },
+    "layover": true
   },
   "warsaw": {
     "name": "Warsaw",
@@ -228,7 +232,8 @@
     "coords": {
       "lat": 39.9042,
       "lng": 116.407396
-    }
+    },
+    "layover": true
   },
   "marsaalam": {
     "name": "Marsa Alam",
@@ -466,7 +471,8 @@
     "coords": {
       "lat": 25.2854,
       "lng": 51.531
-    }
+    },
+    "layover": true
   },
   "sydney": {
     "name": "Sydney",
@@ -501,7 +507,8 @@
     "coords": {
       "lat": 33.7489954,
       "lng": -84.3879824
-    }
+    },
+    "layover": true
   },
   "nola": {
     "name": "New Orleans",
@@ -522,7 +529,8 @@
     "coords": {
       "lat": 25.2048,
       "lng": 55.2708
-    }
+    },
+    "layover": true
   },
   "bangkok": {
     "name": "Bangkok",
@@ -536,14 +544,16 @@
     "coords": {
       "lat": 64.146582,
       "lng": -21.9426354
-    }
+    },
+    "layover": true
   },
   "honolulu": {
     "name": "Honolulu",
     "coords": {
       "lat": 21.3069444,
       "lng": -157.8583333
-    }
+    },
+    "layover": true
   },
   "hawaii": {
     "name": "Hawai'i",
@@ -648,6 +658,7 @@
     "coords": {
       "lat": 42.331427,
       "lng": -83.0457538
-    }
+    },
+    "layover": true
   }
 }

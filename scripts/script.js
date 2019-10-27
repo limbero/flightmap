@@ -50,17 +50,18 @@ function newTrainRide(between, path) {
   });
 }
 
-function newPlace(location, id, places) {
+function newPlace(location, id, places, layover) {
   let marker = new google.maps.Marker({
     position: location,
     map: map,
     id: id,
-    icon: circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()])
+    icon: circleIcon(layover ? 0.0 : 1.0, iconSizeAtZoomLevel[map.getZoom()])
   });
 
   place_markers[marker.id] = marker;
 
   google.maps.event.addListener(marker, 'mouseover', function (event) {
+    if (places[this.id].layover) { return; }
     for (let id in place_markers) {
       place_markers[id].setIcon(circleIcon(0.1, iconSizeAtZoomLevel[map.getZoom()]));
     }
@@ -71,7 +72,7 @@ function newPlace(location, id, places) {
 
     for (let i=0; i < trips.length; i++) {
       if (this.id == trips[i].between[0]) {
-        place_markers[trips[i].between[1]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
+        place_markers[trips[i].between[1]].setIcon(circleIcon(places[trips[i].between[1]].layover ? 0.0 : 1.0, iconSizeAtZoomLevel[map.getZoom()]));
         const name = places[trips[i].between[1]].name;
         if (!connects.hasOwnProperty(name)) {
           connects[name] = [emoji[trips[i].type]];
@@ -82,7 +83,7 @@ function newPlace(location, id, places) {
           strokeOpacity : 1.0
         });
       } else if (this.id == trips[i].between[1]) {
-        place_markers[trips[i].between[0]].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
+        place_markers[trips[i].between[0]].setIcon(circleIcon(places[trips[i].between[0]].layover ? 0.0 : 1.0, iconSizeAtZoomLevel[map.getZoom()]));
         const name = places[trips[i].between[0]].name;
         if (!connects.hasOwnProperty(name)) {
           connects[name] = [emoji[trips[i].type]];
@@ -121,7 +122,7 @@ function newPlace(location, id, places) {
 
   google.maps.event.addListener(marker, 'mouseout', function (event) {
     for (let id in place_markers) {
-      place_markers[id].setIcon(circleIcon(1.0, iconSizeAtZoomLevel[map.getZoom()]));
+      place_markers[id].setIcon(circleIcon(places[id].layover ? 0.0 : 1.0, iconSizeAtZoomLevel[map.getZoom()]));
     }
 
     for (let i=0; i < trips.length; i++) {
@@ -180,7 +181,7 @@ function initMap() {
     let bounds = new google.maps.LatLngBounds();
     for (let id in places) {
       bounds.extend(places[id].coords);
-      newPlace(places[id].coords, id, places);
+      newPlace(places[id].coords, id, places, places[id].layover);
     }
     map.fitBounds(bounds);
     // map.setZoom(map.getZoom()-1);
