@@ -558,5 +558,82 @@
       "lat": 20.7983626,
       "lng": -156.3319253
     }
+  },
+  "charlestonwv": {
+    "name": "Charleston, WV",
+    "coords": {
+      "lat": 38.3498195,
+      "lng": -81.6326234
+    }
+  },
+  "portlandme": {
+    "name": "Portland, ME",
+    "coords": {
+      "lat": 43.6590993,
+      "lng": -70.2568189
+    }
+  },
+  "burlington": {
+    "name": "Burlington, VT",
+    "coords": {
+      "lat": 44.4758825,
+      "lng": -73.21207199999999
+    }
+  },
+  "waterbury": {
+    "name": "Waterbury, VT",
+    "coords": {
+      "lat": 44.3378203,
+      "lng": -72.7562636
+    }
+  },
+  "summitbechtel": {
+    "name": "Summit Bechtel Reserve, WV",
+    "coords": {
+      "lat": 37.9095208,
+      "lng": -81.114181
+    }
+  },
+  "middleburg": {
+    "name": "Middleburg, VA",
+    "coords": {
+      "lat": 38.9687211,
+      "lng": -77.7355496
+    }
+  },
+  "charltonma": {
+    "name": "Charlton, MA",
+    "coords": {
+      "lat": 42.13565,
+      "lng": -71.970074
+    }
+  },
+  "okemo": {
+    "name": "Okemo",
+    "coords": {
+      "lat": 43.4018331,
+      "lng": -72.716554
+    }
+  },
+  "stowe": {
+    "name": "Stowe, VT",
+    "coords": {
+      "lat": 44.4654332,
+      "lng": -72.6874023
+    }
+  },
+  "hartford": {
+    "name": "Hartford, CT",
+    "coords": {
+      "lat": 41.7658043,
+      "lng": -72.6733723
+    }
+  },
+  "newport": {
+    "name": "Newport, RI",
+    "coords": {
+      "lat": 41.4901024,
+      "lng": -71.3128285
+    }
   }
 }

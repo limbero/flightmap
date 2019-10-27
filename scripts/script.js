@@ -12,7 +12,7 @@ function newPath(coords, color) {
     path: coords,
     strokeColor: color,
     strokeOpacity: 1.0,
-    strokeWeight: 1,
+    strokeWeight: 2,
     geodesic: true,
     map: map
   });
