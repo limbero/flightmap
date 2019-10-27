@@ -202,5 +202,21 @@
   [
     "reykjavik",
     "copenhagen"
+  ],
+  [
+    "boston",
+    "honolulu"
+  ],
+  [
+    "honolulu",
+    "hawaii"
+  ],
+  [
+    "hawaii",
+    "maui"
+  ],
+  [
+    "maui",
+    "honolulu"
   ]
 ]

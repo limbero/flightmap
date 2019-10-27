@@ -537,5 +537,26 @@
       "lat": 64.146582,
       "lng": -21.9426354
     }
+  },
+  "honolulu": {
+    "name": "Honolulu",
+    "coords": {
+      "lat": 21.3069444,
+      "lng": -157.8583333
+    }
+  },
+  "hawaii": {
+    "name": "Hawai'i",
+    "coords": {
+      "lat": 19.8967662,
+      "lng": -155.5827818
+    }
+  },
+  "maui": {
+    "name": "Maui",
+    "coords": {
+      "lat": 20.7983626,
+      "lng": -156.3319253
+    }
   }
 }
