@@ -226,5 +226,17 @@
   [
     "dc",
     "charlestonwv"
+  ],
+  [
+    "florence",
+    "amsterdam"
+  ],
+  [
+    "amsterdam",
+    "detroit"
+  ],
+  [
+    "detroit",
+    "boston"
   ]
 ]

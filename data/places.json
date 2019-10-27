@@ -635,5 +635,19 @@
       "lat": 41.4901024,
       "lng": -71.3128285
     }
+  },
+  "florence": {
+    "name": "Florence",
+    "coords": {
+      "lat": 43.7695604,
+      "lng": 11.2558136
+    }
+  },
+  "detroit": {
+    "name": "Detroit",
+    "coords": {
+      "lat": 42.331427,
+      "lng": -83.0457538
+    }
   }
 }
