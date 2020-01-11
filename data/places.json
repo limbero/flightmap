@@ -660,5 +660,40 @@
       "lng": -83.0457538
     },
     "layover": true
+  },
+  "cancun": {
+    "name": "Cancún",
+    "coords": {
+      "lat": 21.161908,
+      "lng": -86.8515279
+    }
+  },
+  "islamujeres": {
+    "name": "Isla Mujeres",
+    "coords": {
+      "lat": 21.2321799,
+      "lng": -86.73409339999999
+    }
+  },
+  "tulum": {
+    "name": "Tulum",
+    "coords": {
+      "lat": 20.2114185,
+      "lng": -87.46535019999999
+    }
+  },
+  "chichenitza": {
+    "name": "Chichen Itza, Mexico",
+    "coords": {
+      "lat": 20.6842849,
+      "lng": -88.5677826
+    }
+  },
+  "montreal": {
+    "name": "Montréal",
+    "coords": {
+      "lat": 45.5016889,
+      "lng": -73.567256
+    }
   }
 }
