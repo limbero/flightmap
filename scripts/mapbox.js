@@ -14,8 +14,9 @@ map.on('load', () => {
           type: 'FeatureCollection',
           features: Object.entries(places)
             .filter(([_, place]) => !place.layover)
-            .map(([placeId, place]) => ({
+            .map(([placeId, place], i) => ({
               type: 'Feature',
+              id: i,
               geometry: {
                 type: 'Point',
                 coordinates: [place.coords.lng, place.coords.lat],
@@ -37,15 +38,52 @@ map.on('load', () => {
         source: 'visited-places',
         type: 'circle',
         paint: {
-          'circle-radius': 5,
-          'circle-color': '#FFFFFF',
+          'circle-radius': 4,
+          'circle-color': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            '#FF0000',
+            '#FFFFFF',
+          ],
           'circle-stroke-color': '#FF0000',
-          'circle-stroke-width': 2,
+          'circle-stroke-width': 1,
           // Mapbox Style Specification paint properties
         },
         layout: {
           // Mapbox Style Specification layout properties
         },
+      });
+
+      let hoveredPlaceId;
+      map.on('mousemove', 'visited', function(e) {
+        if (e.features.length > 0) {
+          map.getCanvas().style.cursor = 'pointer';
+          if (typeof hoveredPlaceId !== 'undefined') {
+            map.setFeatureState(
+              { source: 'visited-places', id: hoveredPlaceId },
+              { hover: false }
+            );
+          }
+          hoveredPlaceId = e.features[0].id;
+          console.log(hoveredPlaceId);
+          map.setFeatureState(
+            { source: 'visited-places', id: hoveredPlaceId },
+            { hover: true }
+          );
+        }
+      });
+
+      // When the mouse leaves the state-fill layer, update the feature state of the
+      // previously hovered feature.
+      map.on('mouseleave', 'visited', function() {
+        map.getCanvas().style.cursor = '';
+        if (hoveredPlaceId) {
+          map.setFeatureState(
+            { source: 'visited-places', id: hoveredPlaceId },
+            { hover: false }
+          );
+        }
+        hoveredPlaceId = null;
       });
       // let bounds = new google.maps.LatLngBounds();
       // for (let id in places) {
