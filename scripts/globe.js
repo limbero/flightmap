@@ -13,7 +13,7 @@ let emoji = {
   busride: '🚌',
   trainride: '🚂',
   drive: '🚗',
-  flight: '✈️'
+  flight: '✈️',
 };
 
 let scene;
@@ -23,7 +23,7 @@ let renderer;
 let globeMesh;
 let cloudMesh;
 
-document.addEventListener("DOMContentLoaded", async event => {
+document.addEventListener('DOMContentLoaded', async event => {
   initiateGlobeWithClouds();
 
   let lastTimeMsec = null;
@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", async event => {
     // keep looping
     requestAnimationFrame(animate);
     // measure time
-    lastTimeMsec = lastTimeMsec || nowMsec - 1000/60;
+    lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60;
     let deltaMsec = Math.min(200, nowMsec - lastTimeMsec);
     lastTimeMsec = nowMsec;
-    
+
     // earthMesh.rotateY(1/64 * deltaMsec/1000);
-    cloudMesh.rotateY(1/64 * deltaMsec/1000);
+    cloudMesh.rotateY(((1 / 64) * deltaMsec) / 1000);
 
     controls.update();
     renderer.clear();
@@ -44,18 +44,18 @@ document.addEventListener("DOMContentLoaded", async event => {
   });
 
   await fetchAllData();
-  
-  let infobox = document.getElementById("infobox");
-  infobox.getElementsByTagName("h2")[0].innerHTML = "Trips";
 
-  let div = document.createElement("div");
+  let infobox = document.getElementById('infobox');
+  infobox.getElementsByTagName('h2')[0].innerHTML = 'Trips';
+
+  let div = document.createElement('div');
   trip_list.forEach((trip, index) => {
-    let p = document.createElement("p");
-    let a = document.createElement("a");
+    let p = document.createElement('p');
+    let a = document.createElement('a');
     a.innerHTML = `${trip.name} (${trip.when})`;
     a.setAttribute('data-index', index);
 
-    a.onclick = (event) => {
+    a.onclick = event => {
       let index = event.target.getAttribute('data-index');
       if (tripShown === index) {
         tripShown = undefined;
@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", async event => {
     p.appendChild(a);
     div.appendChild(p);
   });
-  let p = infobox.getElementsByTagName("p")[0];
+  let p = infobox.getElementsByTagName('p')[0];
   while (p.hasChildNodes()) {
     p.removeChild(p.lastChild);
   }
   infobox.appendChild(div);
 
-  infobox.style.visibility = "visible";
+  infobox.style.visibility = 'visible';
 });
 
 function fetchJson(uri) {
@@ -82,9 +82,9 @@ function fetchJson(uri) {
 }
 async function fetchAllData() {
   const places = await fetchJson('data/places.json');
-  
+
   Object.keys(places).forEach(key => {
-    let place = makeMarker(places[key].coords, 0xFFFFFF, key);
+    let place = makeMarker(places[key].coords, 0xffffff, key);
     place_markers[key] = place;
     place_marker_list.push(place);
     earthMesh.add(place);
@@ -103,38 +103,53 @@ async function fetchAllData() {
 
   const busrides = await fetchJson('data/busrides.json');
   busrides.forEach(busride => {
-    addBusRide(busride.coords, earthMesh, busride.between[0], busride.between[1]);
+    addBusRide(
+      busride.coords,
+      earthMesh,
+      busride.between[0],
+      busride.between[1]
+    );
   });
 
   const trainrides = await fetchJson('data/trainrides.json');
   trainrides.forEach(trainride => {
-    addTrainRide(trainride.coords, earthMesh, trainride.between[0], trainride.between[1]);
+    addTrainRide(
+      trainride.coords,
+      earthMesh,
+      trainride.between[0],
+      trainride.between[1]
+    );
   });
 
   const trips = await fetchJson('data/trips.json');
   trip_list = trips.sort((a, b) => {
     return a.when - b.when;
-  });;
+  });
 }
 
 function initiateGlobeWithClouds() {
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.autoClear = false;
-  renderer.setClearColor(0xFFFFFF, 0.0);
+  renderer.setClearColor(0xffffff, 0.0);
 
   document.getElementById('globe').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xFFFFFF);
+  scene.background = new THREE.Color(0xffffff);
 
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.01,
+    1000
+  );
   camera.position.z = 300;
 
   let ambientLight = new THREE.AmbientLight(0x999999);
   scene.add(ambientLight);
 
-  let directionalLight = new THREE.DirectionalLight(0xCCCCCC, 1);
+  let directionalLight = new THREE.DirectionalLight(0xcccccc, 1);
   directionalLight.position.set(0, 250, 250);
   scene.add(directionalLight);
 
@@ -142,9 +157,13 @@ function initiateGlobeWithClouds() {
 
   let earthMaterial = new THREE.MeshPhongMaterial();
   earthMaterial.map = new THREE.TextureLoader().load('globe/earth_4k.jpg');
-  earthMaterial.bumpMap = new THREE.TextureLoader().load('globe/earth_bump_4k.jpg');
+  earthMaterial.bumpMap = new THREE.TextureLoader().load(
+    'globe/earth_bump_4k.jpg'
+  );
   earthMaterial.bumpScale = 1;
-  earthMaterial.specularMap = new THREE.TextureLoader().load('globe/water_4k.png');
+  earthMaterial.specularMap = new THREE.TextureLoader().load(
+    'globe/water_4k.png'
+  );
   earthMaterial.specular = new THREE.Color('grey');
   earthMaterial.shininess = 5;
 
@@ -195,7 +214,7 @@ function showTrip(index) {
 }
 
 function addBusRide(coords, scene, loc1, loc2) {
-  addComplexPath(coords, scene, 0xCC00CC, loc1, loc2, 'busride');
+  addComplexPath(coords, scene, 0xcc00cc, loc1, loc2, 'busride');
 }
 
 function addDrive(coords, scene, loc1, loc2) {
@@ -220,11 +239,13 @@ function addComplexPath(coords, scene, color, loc1, loc2, type) {
   geometry.vertices = coords.map(coord => convertCoordsToVec3(coord));
 
   let line = new MeshLine();
-  line.setGeometry(geometry, (p) => { return 1 * Maf.parabola(p, 1); });
+  line.setGeometry(geometry, p => {
+    return 1 * Maf.parabola(p, 1);
+  });
 
   let meshMaterial = new MeshLineMaterial({
     lineWidth: 0.3,
-    color: new THREE.Color(color)
+    color: new THREE.Color(color),
   });
 
   let mesh = new THREE.Mesh(line.geometry, meshMaterial);
@@ -256,57 +277,63 @@ function makeFlightPath(vF, vT) {
   let cvF = vF.clone();
 
   // then you get the half point of the vectors points.
-  let xC = ( 0.5 * (vF.x + vT.x) );
-  let yC = ( 0.5 * (vF.y + vT.y) );
-  let zC = ( 0.5 * (vF.z + vT.z) );
+  let xC = 0.5 * (vF.x + vT.x);
+  let yC = 0.5 * (vF.y + vT.y);
+  let zC = 0.5 * (vF.z + vT.z);
 
   // then we create a vector for the midpoints.
   let mid = new THREE.Vector3(xC, yC, zC);
 
-  let smoothDist = map(dist, 0, 10, 0, 15/dist );
+  let smoothDist = map(dist, 0, 10, 0, 15 / dist);
 
-  mid.setLength( radius * smoothDist );
-  
+  mid.setLength(radius * smoothDist);
+
   cvT.add(mid);
   cvF.add(mid);
-  
-  cvT.setLength( radius * smoothDist );
-  cvF.setLength( radius * smoothDist );
 
-  let curve = new THREE.CubicBezierCurve3( vF, cvF, cvT, vT );
+  cvT.setLength(radius * smoothDist);
+  cvF.setLength(radius * smoothDist);
+
+  let curve = new THREE.CubicBezierCurve3(vF, cvF, cvT, vT);
 
   let curveGeometry = new THREE.Geometry();
-  curveGeometry.vertices = curve.getPoints( 50 );
+  curveGeometry.vertices = curve.getPoints(50);
 
   let line = new MeshLine();
-  line.setGeometry(curveGeometry, (p) => { return 1 * Maf.parabola(p, 1); });
+  line.setGeometry(curveGeometry, p => {
+    return 1 * Maf.parabola(p, 1);
+  });
 
   let meshMaterial = new MeshLineMaterial({
     lineWidth: 0.5,
-    color: new THREE.Color(0x990033)
+    color: new THREE.Color(0x990033),
   });
 
   let mesh = new THREE.Mesh(line.geometry, meshMaterial);
 
   return mesh;
 }
-function map( x,  in_min,  in_max,  out_min,  out_max){
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+function map(x, in_min, in_max, out_min, out_max) {
+  return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 }
 
 // credit to stemkoski @ github
 function convertCoordsToVec3(coords) {
   let lat = coords.lat;
   let lon = coords.lng;
-  lat =  lat * Math.PI / 180.0;
-  lon = -lon * Math.PI / 180.0;
-  return new THREE.Vector3( 
-    Math.cos(lat) * Math.cos(lon), 
-    Math.sin(lat), 
-    Math.cos(lat) * Math.sin(lon) ).multiplyScalar(100);
+  lat = (lat * Math.PI) / 180.0;
+  lon = (-lon * Math.PI) / 180.0;
+  return new THREE.Vector3(
+    Math.cos(lat) * Math.cos(lon),
+    Math.sin(lat),
+    Math.cos(lat) * Math.sin(lon)
+  ).multiplyScalar(100);
 }
 function makeMarker(coordinates, color, name) {
-  let marker = new THREE.Mesh( new THREE.SphereGeometry(0.3, 32, 16), new THREE.MeshBasicMaterial({color: color}) );
+  let marker = new THREE.Mesh(
+    new THREE.SphereGeometry(0.3, 32, 16),
+    new THREE.MeshBasicMaterial({ color: color })
+  );
   let coords = convertCoordsToVec3(coordinates);
   marker.position.set(coords.x, coords.y, coords.z);
   marker.name = name;
