@@ -30,6 +30,36 @@ function coordsArray(coordsObject) {
   return [coordsObject.lng, coordsObject.lat];
 }
 
+function geoJsonFeatureFromTrip(trip) {
+  return {
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: trip.coords.map(obj => [obj.lng, obj.lat]),
+    },
+    properties: {
+      between: trip.between,
+    },
+  };
+}
+
+function addSourceAndLayerForTripType(map, type, color) {
+  fetch(`data/${type}.json`)
+    .then(response => response.json())
+    .then(paths => {
+      map.addSource(type, {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: paths.map(trip =>
+            geoJsonFeatureFromTrip(trip)
+          ),
+        },
+      });
+      map.addLayer(routeLayer(`${type}-layer`, type, color), 'visited-layer');
+    });
+}
+
 function coordsArraysForFlightPoints(flight, places) {
   return [
     coordsArray(places[flight[0]].coords),
@@ -55,7 +85,7 @@ function flightPathFromFlight(flight, places) {
   // Number of steps to use in the arc and animation, more steps means
   // a smoother arc and animation, but too many steps will result in a
   // low frame rate
-  var steps = 200;
+  var steps = 500;
 
   // Draw an arc between the `origin` & `destination` of the two points
   for (var i = 0; i < lineDistance; i += lineDistance / steps) {
@@ -162,34 +192,8 @@ map.on('load', () => {
           map.addLayer(routeLayer('flights-layer', 'flights', '#FF6666'), 'visited-layer');
         });
 
-      // let bounds = new google.maps.LatLngBounds();
-      // for (let id in places) {
-      //   bounds.extend(places[id].coords);
-      //   newPlace(places[id].coords, id, places, places[id].layover);
-      // }
-      // map.fitBounds(bounds);
-      // // map.setZoom(map.getZoom()-1);
-
-      // fetch('data/trainrides.json')
-      // .then(response => response.json())
-      // .then(trainrides => {
-      //   trainrides.map(trainride => newTrainRide(trainride.between, trainride.coords));
-
-      //   fetch('data/busrides.json')
-      //   .then(response => response.json())
-      //   .then(busrides => {
-      //     busrides.map(busride => newBusRide(busride.between, busride.coords));
-
-      //     fetch('data/drives.json')
-      //     .then(response => response.json())
-      //     .then(drives => {
-      //       drives.map(drive => newDrive(drive.between, drive.coords));
-
-      //       fetch('data/flights.json')
-      //       .then(response => response.json())
-      //       .then(paths => paths.map(between => newFlight(between, places)));
-      //     });
-      //   });
-      // });
+      addSourceAndLayerForTripType(map, 'drives', '#6666FF');
+      addSourceAndLayerForTripType(map, 'trainrides', '#009933');
+      addSourceAndLayerForTripType(map, 'busrides', '#CC00CC');
     });
 });
