@@ -2,7 +2,7 @@ mapboxgl.accessToken =
   'pk.eyJ1IjoibGltYmVybyIsImEiOiJjazU5eTR0Zm8wdWU2M21wM3gybG9udWFmIn0.Ys0BrsAvUY_7Jmii5pnpcg';
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/satellite-v8',
+  style: 'mapbox://styles/limbero/ck5bf2gyh0p221cp2gzkpzovj',
 });
 
 function nonLayoverPlacesToGeoJsonFeatures(places) {
@@ -26,23 +26,77 @@ function myPlaceToGeoJsonFeature(place, textId, index) {
   };
 }
 
+function coordsArray(coordsObject) {
+  return [coordsObject.lng, coordsObject.lat];
+}
+
+function coordsArraysForFlightPoints(flight, places) {
+  return [
+    coordsArray(places[flight[0]].coords),
+    coordsArray(places[flight[1]].coords),
+  ];
+}
+
+function flightPathFromFlight(flight, places) {
+  // A simple line from origin to destination.
+  const route = {
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: coordsArraysForFlightPoints(flight, places),
+    },
+  };
+
+  // Calculate the distance in kilometers between route start/end point.
+  var lineDistance = turf.lineDistance(route, 'kilometers');
+
+  var arc = [];
+
+  // Number of steps to use in the arc and animation, more steps means
+  // a smoother arc and animation, but too many steps will result in a
+  // low frame rate
+  var steps = 200;
+
+  // Draw an arc between the `origin` & `destination` of the two points
+  for (var i = 0; i < lineDistance; i += lineDistance / steps) {
+    var segment = turf.along(route, i, 'kilometers');
+    arc.push(segment.geometry.coordinates);
+  }
+
+  // Update the route with calculated arc coordinates
+  route.geometry.coordinates = arc;
+  return route;
+}
+
+function routeLayer(id, sourceId, color) {
+  return {
+    id: id,
+    source: sourceId,
+    type: 'line',
+    paint: {
+      'line-width': 1,
+      'line-color': color,
+    },
+  };
+}
+
 const visitedLayer = {
-  id: 'visited',
+  id: 'visited-layer',
   source: {
     type: 'vector',
     url: 'mapbox://mapbox.mapbox-streets-v8',
   },
-  source: 'visited-places',
+  source: 'visited',
   type: 'circle',
   paint: {
     'circle-radius': 4,
     'circle-color': [
       'case',
       ['boolean', ['feature-state', 'hover'], false],
-      '#FF0000',
+      '#FF6666',
       '#FFFFFF',
     ],
-    'circle-stroke-color': '#FF0000',
+    'circle-stroke-color': '#FF6666',
     'circle-stroke-width': 1,
   },
   layout: {
@@ -54,7 +108,7 @@ map.on('load', () => {
   fetch('data/places.json')
     .then(response => response.json())
     .then(places => {
-      map.addSource('visited-places', {
+      map.addSource('visited', {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
@@ -65,34 +119,49 @@ map.on('load', () => {
       map.addLayer(visitedLayer);
 
       let hoveredPlaceId;
-      map.on('mousemove', 'visited', function(e) {
+      map.on('mousemove', 'visited-layer', function(e) {
         if (e.features.length > 0) {
           map.getCanvas().style.cursor = 'pointer';
           if (typeof hoveredPlaceId !== 'undefined') {
             map.setFeatureState(
-              { source: 'visited-places', id: hoveredPlaceId },
+              { source: 'visited', id: hoveredPlaceId },
               { hover: false }
             );
           }
           hoveredPlaceId = e.features[0].id;
-          console.log(hoveredPlaceId);
           map.setFeatureState(
-            { source: 'visited-places', id: hoveredPlaceId },
+            { source: 'visited', id: hoveredPlaceId },
             { hover: true }
           );
         }
       });
 
-      map.on('mouseleave', 'visited', function() {
+      map.on('mouseleave', 'visited-layer', function() {
         map.getCanvas().style.cursor = '';
         if (hoveredPlaceId) {
           map.setFeatureState(
-            { source: 'visited-places', id: hoveredPlaceId },
+            { source: 'visited', id: hoveredPlaceId },
             { hover: false }
           );
         }
         hoveredPlaceId = null;
       });
+
+      fetch('data/flights.json')
+        .then(response => response.json())
+        .then(paths => {
+          map.addSource('flights', {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: paths.map(between =>
+                flightPathFromFlight(between, places)
+              ),
+            },
+          });
+          map.addLayer(routeLayer('flights-layer', 'flights', '#FF6666'), 'visited-layer');
+        });
+
       // let bounds = new google.maps.LatLngBounds();
       // for (let id in places) {
       //   bounds.extend(places[id].coords);
