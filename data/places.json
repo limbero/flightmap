@@ -702,5 +702,61 @@
       "lat": 43.1541875,
       "lng": 16.6527099
     }
+  },
+  "kohsamet": {
+    "name": "Koh Samet",
+    "coords": {
+      "lat": 12.5582501,
+      "lng": 101.4510911
+    }
+  },
+  "ingmarso": {
+    "name": "Ingmarsö",
+    "coords": {
+      "lat": 59.4736515,
+      "lng": 18.7694402
+    }
+  },
+  "visby": {
+    "name": "Visby",
+    "coords": {
+      "lat": 57.6348,
+      "lng": 18.29484
+    }
+  },
+  "motala": {
+    "name": "Motala",
+    "coords": {
+      "lat": 58.5380335,
+      "lng": 15.0470936
+    }
+  },
+  "linkoping": {
+    "name": "Linköping",
+    "coords": {
+      "lat": 58.41080700000001,
+      "lng": 15.6213728
+    }
+  },
+  "norrkoping": {
+    "name": "Norrköping",
+    "coords": {
+      "lat": 58.587745,
+      "lng": 16.192421
+    }
+  },
+  "turku": {
+    "name": "Åbo",
+    "coords": {
+      "lat": 60.4518126,
+      "lng": 22.2666302
+    }
+  },
+  "aland": {
+    "name": "Åland",
+    "coords": {
+      "lat": 60.1785247,
+      "lng": 19.9156105
+    }
   }
 }

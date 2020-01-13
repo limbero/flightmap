@@ -44,7 +44,7 @@ function geoJsonFeatureFromTrip(trip) {
 }
 
 function addSourceAndLayerForTripType(map, type, color) {
-  fetch(`data/${type}.json`)
+  fetch(`data/${type}.json`, {cache: "no-store"})
     .then(response => response.json())
     .then(paths => {
       map.addSource(type, {
@@ -145,7 +145,7 @@ const visitedLayer = {
 };
 
 map.on('load', () => {
-  fetch('data/places.json')
+  fetch('data/places.json', {cache: "no-store"})
     .then(response => response.json())
     .then(places => {
       map.addSource('visited', {
@@ -209,7 +209,7 @@ map.on('load', () => {
         hoveredPlaceId = null;
       });
 
-      fetch('data/flights.json')
+      fetch('data/flights.json', {cache: "no-store"})
         .then(response => response.json())
         .then(paths => {
           map.addSource('flights', {
