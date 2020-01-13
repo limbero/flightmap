@@ -29,8 +29,11 @@ switch (args[0]) {
   case 'flight':
     addTrip('flights.json', [args[1], args[2]]);
     process.exit(0);
+  case 'boat':
+    addTrip('boatrides.json', [args[1], args[2]]);
+    process.exit(0);
   default:
-    console.log('You must supply a valid trip type as the first argument [drive, bus, train, flight]');
+    console.log('You must supply a valid trip type as the first argument [drive, bus, train, flight, boat]');
     process.exit(-1);
 }
 

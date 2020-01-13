@@ -43,7 +43,7 @@ function geoJsonFeatureFromTrip(trip) {
   };
 }
 
-function addSourceAndLayerForTripType(map, type, color) {
+function addSourceAndLayerForTripType(map, type, color, places={}) {
   fetch(`data/${type}.json`, {cache: "no-store"})
     .then(response => response.json())
     .then(paths => {
@@ -51,9 +51,17 @@ function addSourceAndLayerForTripType(map, type, color) {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: paths.map(trip =>
-            geoJsonFeatureFromTrip(trip)
-          ),
+          features: paths.map(trip => {
+            switch (type) {
+              case 'drives':
+              case 'trainrides':
+              case 'busrides':
+                return geoJsonFeatureFromTrip(trip)
+              case 'flights':
+              case 'boatrides':
+                return flightPathFromFlight(trip, places)
+            }
+          }),
         },
       });
       map.addLayer(routeLayer(`${type}-layer`, type, color), 'visited-layer');
@@ -209,21 +217,8 @@ map.on('load', () => {
         hoveredPlaceId = null;
       });
 
-      fetch('data/flights.json', {cache: "no-store"})
-        .then(response => response.json())
-        .then(paths => {
-          map.addSource('flights', {
-            type: 'geojson',
-            data: {
-              type: 'FeatureCollection',
-              features: paths.map(between =>
-                flightPathFromFlight(between, places)
-              ),
-            },
-          });
-          map.addLayer(routeLayer('flights-layer', 'flights', '#FF6666'), 'visited-layer');
-        });
-
+      addSourceAndLayerForTripType(map, 'boatrides', '#6666FF', places);
+      addSourceAndLayerForTripType(map, 'flights', '#FF6666', places);
       addSourceAndLayerForTripType(map, 'drives', '#6666FF');
       addSourceAndLayerForTripType(map, 'trainrides', '#009933');
       addSourceAndLayerForTripType(map, 'busrides', '#CC00CC');
