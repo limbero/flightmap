@@ -92,7 +92,6 @@ function flightPathFromFlight(flight, places) {
     const segment = turf.along(route, i, 'kilometers');
     arc.push(segment.geometry.coordinates);
   }
-  // arc.push(arc[arc.length-1])
   arc.push(route.geometry.coordinates[route.geometry.coordinates.length-1]);
 
   // Update the route with calculated arc coordinates
@@ -160,8 +159,29 @@ map.on('load', () => {
       map.addLayer(visitedLayer);
 
       let hoveredPlaceId;
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
       map.on('mousemove', 'visited-layer', function(e) {
         if (e.features.length > 0) {
+          // Create a popup, but don't add it to the map yet.
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const name = e.features[0].properties.name;
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          // Populate the popup and set its coordinates
+          // based on the feature found.
+          popup
+            .setLngLat(coordinates)
+            .setHTML(`<strong>${name}</strong>`)
+            .addTo(map);
+
           map.getCanvas().style.cursor = 'pointer';
           if (typeof hoveredPlaceId !== 'undefined') {
             map.setFeatureState(
@@ -179,6 +199,7 @@ map.on('load', () => {
 
       map.on('mouseleave', 'visited-layer', function() {
         map.getCanvas().style.cursor = '';
+        popup.remove();
         if (hoveredPlaceId) {
           map.setFeatureState(
             { source: 'visited', id: hoveredPlaceId },
