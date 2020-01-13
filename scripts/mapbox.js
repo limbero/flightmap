@@ -78,20 +78,22 @@ function flightPathFromFlight(flight, places) {
   };
 
   // Calculate the distance in kilometers between route start/end point.
-  var lineDistance = turf.lineDistance(route, 'kilometers');
+  const lineDistance = turf.lineDistance(route, 'kilometers');
 
-  var arc = [];
+  const arc = [];
 
   // Number of steps to use in the arc and animation, more steps means
   // a smoother arc and animation, but too many steps will result in a
   // low frame rate
-  var steps = 500;
+  const steps = 500;
 
   // Draw an arc between the `origin` & `destination` of the two points
-  for (var i = 0; i < lineDistance; i += lineDistance / steps) {
-    var segment = turf.along(route, i, 'kilometers');
+  for (let i = 0; i < lineDistance; i += lineDistance / steps) {
+    const segment = turf.along(route, i, 'kilometers');
     arc.push(segment.geometry.coordinates);
   }
+  // arc.push(arc[arc.length-1])
+  arc.push(route.geometry.coordinates[route.geometry.coordinates.length-1]);
 
   // Update the route with calculated arc coordinates
   route.geometry.coordinates = arc;
@@ -99,12 +101,21 @@ function flightPathFromFlight(flight, places) {
 }
 
 function routeLayer(id, sourceId, color) {
+  const baseWidth = 3;
+  const baseZoom = 1;
   return {
     id: id,
     source: sourceId,
     type: 'line',
     paint: {
-      'line-width': 1,
+      "line-width": {
+        "type": "exponential",
+        "base": 2,
+        "stops": [
+            [0, baseWidth * Math.pow(2, (0 - baseZoom))],
+            [24, baseWidth * Math.pow(2, (16 - baseZoom))]
+        ]
+      },
       'line-color': color,
     },
   };
