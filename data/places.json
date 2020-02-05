@@ -758,5 +758,20 @@
       "lat": 60.1785247,
       "lng": 19.9156105
     }
+  },
+  "jacksonhole": {
+    "name": "Jackson Hole",
+    "coords": {
+      "lat": 43.612255,
+      "lng": -110.7054295
+    }
+  },
+  "chicago": {
+    "name": "Chicago",
+    "coords": {
+      "lat": 41.8781136,
+      "lng": -87.6297982
+    },
+    "layover": true
   }
 }

@@ -246,5 +246,13 @@
   [
     "cancun",
     "boston"
+  ],
+  [
+    "boston",
+    "chicago"
+  ],
+  [
+    "chicago",
+    "jacksonhole"
   ]
 ]
