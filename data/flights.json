@@ -254,5 +254,29 @@
   [
     "chicago",
     "jacksonhole"
+  ],
+  [
+    "boston",
+    "charlottenc"
+  ],
+  [
+    "charlottenc",
+    "austin"
+  ],
+  [
+    "austin",
+    "denver"
+  ],
+  [
+    "denver",
+    "bigsky"
+  ],
+  [
+    "bigsky",
+    "minneapolis"
+  ],
+  [
+    "minneapolis",
+    "boston"
   ]
 ]

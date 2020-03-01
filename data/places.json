@@ -773,5 +773,35 @@
       "lng": -87.6297982
     },
     "layover": true
+  },
+  "charlottenc": {
+    "name": "Charlotte, NC",
+    "coords": {
+      "lat": 35.2270869,
+      "lng": -80.8431267
+    },
+    "layover": true
+  },
+  "austin": {
+    "name": "Austin, TX",
+    "coords": {
+      "lat": 30.267153,
+      "lng": -97.7430608
+    }
+  },
+  "bigsky": {
+    "name": "Big Sky, MT",
+    "coords": {
+      "lat": 45.26178059999999,
+      "lng": -111.3080244
+    }
+  },
+  "minneapolis": {
+    "name": "Minneapolis",
+    "coords": {
+      "lat": 44.977753,
+      "lng": -93.2650108
+    },
+    "layover": true
   }
 }
