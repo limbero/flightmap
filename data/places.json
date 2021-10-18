@@ -803,5 +803,26 @@
       "lng": -93.2650108
     },
     "layover": true
+  },
+  "brussels": {
+    "name": "Brussels",
+    "coords": {
+      "lat": 50.8503396,
+      "lng": 4.3517103
+    }
+  },
+  "ghent": {
+    "name": "Ghent",
+    "coords": {
+      "lat": 51.0543422,
+      "lng": 3.7174243
+    }
+  },
+  "bruges": {
+    "name": "Bruges",
+    "coords": {
+      "lat": 51.209348,
+      "lng": 3.2246995
+    }
   }
 }

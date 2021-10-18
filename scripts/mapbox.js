@@ -120,7 +120,7 @@ function routeLayer(id, sourceId, color) {
         "base": 2,
         "stops": [
             [0, baseWidth * Math.pow(2, (0 - baseZoom))],
-            [24, baseWidth * Math.pow(2, (16 - baseZoom))]
+            [24, baseWidth * Math.pow(2, (18 - baseZoom))]
         ]
       },
       'line-color': color,
@@ -137,7 +137,7 @@ const visitedLayer = {
   source: 'visited',
   type: 'circle',
   paint: {
-    'circle-radius': 4,
+    'circle-radius': 5,
     'circle-color': [
       'case',
       ['boolean', ['feature-state', 'hover'], false],
