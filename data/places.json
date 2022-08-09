@@ -824,5 +824,40 @@
       "lat": 51.209348,
       "lng": 3.2246995
     }
+  },
+  "pula": {
+    "name": "Pula",
+    "coords": {
+      "lat": 44.8666232,
+      "lng": 13.8495788
+    }
+  },
+  "venice": {
+    "name": "Venice",
+    "coords": {
+      "lat": 45.4408474,
+      "lng": 12.3155151
+    }
+  },
+  "trieste": {
+    "name": "Trieste",
+    "coords": {
+      "lat": 45.6495264,
+      "lng": 13.7768182
+    }
+  },
+  "ljubljana": {
+    "name": "Ljubljana",
+    "coords": {
+      "lat": 46.0569465,
+      "lng": 14.5057515
+    }
+  },
+  "budapest": {
+    "name": "Budapest",
+    "coords": {
+      "lat": 47.497912,
+      "lng": 19.040235
+    }
   }
 }
