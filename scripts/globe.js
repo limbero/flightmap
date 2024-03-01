@@ -156,9 +156,9 @@ function initiateGlobeWithClouds() {
   let ambientLight = new THREE.AmbientLight(0x999999);
   scene.add(ambientLight);
 
-  let directionalLight = new THREE.DirectionalLight(0xcccccc, 1);
-  directionalLight.position.set(0, 250, 250);
-  scene.add(directionalLight);
+  let directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+  camera.add(directionalLight);
+  scene.add(camera);
 
   let earthGeometry = new THREE.SphereGeometry(100, 64, 32);
 
