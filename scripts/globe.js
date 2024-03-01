@@ -24,6 +24,11 @@ let globeMesh;
 let cloudMesh;
 
 document.addEventListener('DOMContentLoaded', async event => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const hideUI = urlParams.get('hideui');
+  if (hideUI !== "true") {
+    document.querySelector(".github-corner").style.visibility = "visible";
+  }
   initiateGlobeWithClouds();
 
   let lastTimeMsec = null;
@@ -74,7 +79,9 @@ document.addEventListener('DOMContentLoaded', async event => {
   }
   infobox.appendChild(div);
 
-  infobox.style.visibility = 'visible';
+  if (hideUI !== "true") {
+    infobox.style.visibility = 'visible';
+  }
 });
 
 function fetchJson(uri) {
