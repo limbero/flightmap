@@ -128,7 +128,7 @@ async function fetchAllData() {
 }
 
 function initiateGlobeWithClouds() {
-  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.autoClear = false;
   renderer.setClearColor(0xffffff, 0.0);
@@ -136,7 +136,7 @@ function initiateGlobeWithClouds() {
   document.getElementById('globe').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
+  scene.background = null;
 
   camera = new THREE.PerspectiveCamera(
     45,
