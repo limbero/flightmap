@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', async event => {
     let deltaMsec = Math.min(200, nowMsec - lastTimeMsec);
     lastTimeMsec = nowMsec;
 
-    // earthMesh.rotateY(1/64 * deltaMsec/1000);
+    if (hideUI === "true") {
+      earthMesh.rotateY(1/4 * deltaMsec/1000);
+    }
     cloudMesh.rotateY(((1 / 64) * deltaMsec) / 1000);
 
     controls.update();
