@@ -909,5 +909,19 @@
       "lng": 8.6821267
     },
     "layover": true
+  },
+  "varberg": {
+    "name": "Varberg",
+    "coords": {
+      "lat": 57.107118,
+      "lng": 12.2520907
+    }
+  },
+  "falsterbo": {
+    "name": "Falsterbo",
+    "coords": {
+      "lat": 55.397121,
+      "lng": 12.8415278
+    }
   }
 }
