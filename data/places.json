@@ -901,5 +901,13 @@
       "lat": 39.998521,
       "lng": 15.7183263
     }
+  },
+  "frankfurt": {
+    "name": "Frankfurt",
+    "coords": {
+      "lat": 50.1109221,
+      "lng": 8.6821267
+    },
+    "layover": true
   }
 }
