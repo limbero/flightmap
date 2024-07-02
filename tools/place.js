@@ -11,7 +11,7 @@ if (!Array.isArray(args) || args.length < 2 || args[0] === '-h' || args[0] === '
 const shortname = args[0];
 const address = args.slice(1).join(' ');
 
-let requesturl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAAM_ApG-DqokDURdJ4yZAEjAXL-Hsze-U';
+let requesturl = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + process.env.GMAPS_API_KEY;
 requesturl += '&address=' + encodeURIComponent(address);
 
 fetch(requesturl)

@@ -37,7 +37,7 @@ switch (args[0]) {
     process.exit(-1);
 }
 
-let requesturl = 'https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyAAM_ApG-DqokDURdJ4yZAEjAXL-Hsze-U';
+let requesturl = 'https://maps.googleapis.com/maps/api/directions/json?key=' + process.env.GMAPS_API_KEY;
 requesturl += '&origin=' + places[args[1]].coords.lat + ',' + places[args[1]].coords.lng;
 requesturl += '&destination=' + places[args[2]].coords.lat + ',' + places[args[2]].coords.lng;
 // requesturl += '&waypoints=Slates%20Hot%20Springs|Notleys%20Landing,%20CA|Santa%20Cruz';
