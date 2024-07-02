@@ -873,5 +873,33 @@
       "lat": 39.6952629,
       "lng": 3.0175712
     }
+  },
+  "naples": {
+    "name": "Naples",
+    "coords": {
+      "lat": 40.8517983,
+      "lng": 14.26812
+    }
+  },
+  "policastro": {
+    "name": "Policastro Bussentino",
+    "coords": {
+      "lat": 40.0738704,
+      "lng": 15.5221357
+    }
+  },
+  "salerno": {
+    "name": "Salerno",
+    "coords": {
+      "lat": 40.6813313,
+      "lng": 14.7743583
+    }
+  },
+  "maratea": {
+    "name": "Maratea",
+    "coords": {
+      "lat": 39.998521,
+      "lng": 15.7183263
+    }
   }
 }
