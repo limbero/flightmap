@@ -46,7 +46,8 @@
     "coords": {
       "lat": 39.739236,
       "lng": -104.990251
-    }
+    },
+    "layover": true
   },
   "dc": {
     "name": "Washington D.C.",
@@ -922,6 +923,58 @@
     "coords": {
       "lat": 55.397121,
       "lng": 12.8415278
+    }
+  },
+  "gnosjo": {
+    "name": "Gnosjö",
+    "coords": {
+      "lat": 57.35803979999999,
+      "lng": 13.7371898
+    }
+  },
+  "helsingor": {
+    "name": "Helsingör",
+    "coords": {
+      "lat": 56.030787,
+      "lng": 12.592127
+    }
+  },
+  "helsingborg": {
+    "name": "Helsingborg",
+    "coords": {
+      "lat": 56.0464674,
+      "lng": 12.6945121
+    },
+    "layover": true
+  },
+  "lofsdalen": {
+    "name": "Lofsdalen",
+    "coords": {
+      "lat": 62.1118857,
+      "lng": 13.2775057
+    }
+  },
+  "sveg": {
+    "name": "Sveg",
+    "coords": {
+      "lat": 62.0346245,
+      "lng": 14.3590366
+    },
+    "layover": true
+  },
+  "ljusdal": {
+    "name": "Ljusdal",
+    "coords": {
+      "lat": 61.8308392,
+      "lng": 16.0817501
+    },
+    "layover": true
+  },
+  "burke": {
+    "name": "Burke, VT",
+    "coords": {
+      "lat": 44.620777,
+      "lng": -71.9510719
     }
   }
 }

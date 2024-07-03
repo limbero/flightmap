@@ -24,7 +24,8 @@ switch (args[0]) {
     break;
   case 'bus':
     filename = 'busrides.json';
-    mode = 'transit&transit_mode=bus';
+    // mode = 'transit&transit_mode=bus';
+    mode = 'driving';
     break;
   case 'flight':
     addTrip('flights.json', [args[1], args[2]]);
@@ -40,21 +41,13 @@ switch (args[0]) {
 let requesturl = 'https://maps.googleapis.com/maps/api/directions/json?key=' + process.env.GMAPS_API_KEY;
 requesturl += '&origin=' + places[args[1]].coords.lat + ',' + places[args[1]].coords.lng;
 requesturl += '&destination=' + places[args[2]].coords.lat + ',' + places[args[2]].coords.lng;
-// requesturl += '&waypoints=Slates%20Hot%20Springs|Notleys%20Landing,%20CA|Santa%20Cruz';
+requesturl += '&mode=' + mode;
 
 fetch(requesturl)
 .then(response => response.json())
 .then(trip => {
-  const coords = trip.routes[0].legs.flatMap(route => {
-    return route.steps.flatMap(step => {
-      return polyline.decode(step.polyline.points);
-    }).map(coordpair => {
-      return {lat: coordpair[0], lng: coordpair[1]}
-    });
-  });
-  
   addTrip(filename, {
-    coords: coords,
+    polyline: trip.routes[0].overview_polyline.points,
     between: [
       args[1],
       args[2]
@@ -66,7 +59,6 @@ fetch(requesturl)
 function addTrip(filename, trip) {
   let trips = JSON.parse(fs.readFileSync('../data/' + filename, 'utf8'));
   trips.push(trip);
-
   fs.writeFileSync('../data/' + filename, JSON.stringify(trips, null, 2));
 }
 

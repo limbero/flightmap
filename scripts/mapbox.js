@@ -1,3 +1,52 @@
+const polyline_decode = function(str, precision) {
+  var index = 0,
+      lat = 0,
+      lng = 0,
+      coordinates = [],
+      shift = 0,
+      result = 0,
+      byte = null,
+      latitude_change,
+      longitude_change,
+      factor = Math.pow(10, precision || 5);
+
+  // Coordinates have variable length when encoded, so just keep
+  // track of whether we've hit the end of the string. In each
+  // loop iteration, a single coordinate is decoded.
+  while (index < str.length) {
+
+      // Reset shift, result, and byte
+      byte = null;
+      shift = 0;
+      result = 0;
+
+      do {
+          byte = str.charCodeAt(index++) - 63;
+          result |= (byte & 0x1f) << shift;
+          shift += 5;
+      } while (byte >= 0x20);
+
+      latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+
+      shift = result = 0;
+
+      do {
+          byte = str.charCodeAt(index++) - 63;
+          result |= (byte & 0x1f) << shift;
+          shift += 5;
+      } while (byte >= 0x20);
+
+      longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+
+      lat += latitude_change;
+      lng += longitude_change;
+
+      coordinates.push([lat / factor, lng / factor]);
+  }
+
+  return coordinates;
+};
+
 mapboxgl.accessToken =
   'pk.eyJ1IjoibGltYmVybyIsImEiOiJjazU5eTR0Zm8wdWU2M21wM3gybG9udWFmIn0.Ys0BrsAvUY_7Jmii5pnpcg';
 const map = new mapboxgl.Map({
@@ -35,7 +84,7 @@ function geoJsonFeatureFromTrip(trip) {
     type: 'Feature',
     geometry: {
       type: 'LineString',
-      coordinates: trip.coords.map(obj => [obj.lng, obj.lat]),
+      coordinates: trip.polyline ? polyline_decode(trip.polyline).map(([lat, lng]) => [lng, lat]) : trip.coords.map(obj => [obj.lng, obj.lat]),
     },
     properties: {
       between: trip.between,
@@ -120,7 +169,7 @@ function routeLayer(id, sourceId, color) {
         "base": 2,
         "stops": [
             [0, baseWidth * Math.pow(2, (0 - baseZoom))],
-            [24, baseWidth * Math.pow(2, (18 - baseZoom))]
+            [24, baseWidth * Math.pow(2, (16 - baseZoom))]
         ]
       },
       'line-color': color,
@@ -219,7 +268,7 @@ map.on('load', () => {
 
       addSourceAndLayerForTripType(map, 'boatrides', '#6666FF', places);
       addSourceAndLayerForTripType(map, 'flights', '#FF6666', places);
-      addSourceAndLayerForTripType(map, 'drives', '#6666FF');
+      addSourceAndLayerForTripType(map, 'drives', '#EAAA00');
       addSourceAndLayerForTripType(map, 'trainrides', '#009933');
       addSourceAndLayerForTripType(map, 'busrides', '#CC00CC');
     });
